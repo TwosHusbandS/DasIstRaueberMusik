@@ -1,0 +1,72 @@
+﻿<Window x:Class="DIRM.Settings"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DIRM"
+        mc:Ignorable="d"
+        Title="Popup" 
+        WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        Height="550" Width="800"
+        SourceInitialized="Window_SourceInitialized"
+        Background="{x:Static local:MyColors.WindowBackground}">
+    <Window.Resources>
+
+    </Window.Resources>
+    <Border BorderThickness="2" BorderBrush="{x:Static local:MyColors.BorderBrush}">
+
+        <Grid x:Name="Grid_Outer">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0" Style="{StaticResource lbl}" Foreground="{x:Static local:MyColors.BorderBrush}" Content="About / Settings" Grid.Column="0" Grid.ColumnSpan="2" Margin="100,10"/>
+            <Button Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource btn}" x:Name="btn_Exit" Click="btn_Exit_Click" Content="X" Width="60" HorizontalAlignment="Right"/>
+
+            <Border x:Name="brdr_About" CornerRadius="10" Grid.Row="1" Margin="10" BorderThickness="2" BorderBrush="White">
+                <ScrollViewer>
+                    <RichTextBox x:Name="rtb_About" IsReadOnly="True" IsDocumentEnabled="True"  Style="{StaticResource rtb}"/>
+                </ScrollViewer>
+            </Border>
+
+
+            <Border x:Name="brdr_Settings" CornerRadius="10" Grid.Row="2" Margin="10" BorderThickness="2" BorderBrush="White">
+                <ScrollViewer Grid.Row="1" x:Name="sv_Settings">
+                    <StackPanel x:Name="sp_Setting">
+                        <Grid x:Name="Grid_Settings">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="80"/>
+                                <RowDefinition Height="80"/>
+                                <RowDefinition Height="80"/>
+                                <RowDefinition Height="80"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label x:Name="lbl_Settings_SavePath" Content="Save Path: " Grid.Row="0" Grid.Column="0" Style="{StaticResource lbl}"/>
+                            <Button x:Name="btn_Settings_SavePath" Content="SavePathValue" Click="btn_Settings_SavePath_Click" MouseRightButtonDown="btn_Settings_SavePath_MouseRightButtonDown" Grid.Row="0" Grid.Column="1" Style="{StaticResource btn}"/>
+
+                            <Button x:Name="btn_Settings_ExportCSV" Content="Export all Saves" Click="btn_Settings_ExportCSV_Click"  Grid.Row="1" Grid.Column="0" Style="{StaticResource btn}"/>
+                            <Button x:Name="btn_Settings_ImportCSV" Content="Import Saves" Click="btn_Settings_ImportCSV_Click" Grid.Row="1" Grid.Column="1" Style="{StaticResource btn}"/>
+
+                            <Label x:Name="lbl_Settings_AutoSave" Content="Auto Save" Grid.Row="2" Grid.Column="0" Style="{StaticResource lbl}"/>
+                            <CheckBox x:Name="cb_Settings_AutoSave" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Click="cb_Settings_AutoSave_Click"/>
+                            
+                            <Label x:Name="lbl_Settings_AlwaysExportAlphabetically" Content="Always export alphabetically" Grid.Row="3" Grid.Column="0" Style="{StaticResource lbl}"/>
+                            <CheckBox x:Name="cb_Settings_AlwaysExportAlphabetically" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Click="cb_Settings_AlwaysExportAlphabetically_Click"/>
+
+                        </Grid>
+                    </StackPanel>
+                </ScrollViewer>
+            </Border>
+
+        </Grid>
+    </Border>
+</Window>

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29509.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DIRM", "DIRM\DIRM.csproj", "{4C83DFB2-8A81-4D8B-BF87-1B8C6CD777D4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4C83DFB2-8A81-4D8B-BF87-1B8C6CD777D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C83DFB2-8A81-4D8B-BF87-1B8C6CD777D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C83DFB2-8A81-4D8B-BF87-1B8C6CD777D4}.Debug|x64.ActiveCfg = Debug|x64
+		{4C83DFB2-8A81-4D8B-BF87-1B8C6CD777D4}.Debug|x64.Build.0 = Debug|x64
+		{4C83DFB2-8A81-4D8B-BF87-1B8C6CD777D4}.Release|Any CPU.ActiveCfg = Release|x64
+		{4C83DFB2-8A81-4D8B-BF87-1B8C6CD777D4}.Release|Any CPU.Build.0 = Release|x64
+		{4C83DFB2-8A81-4D8B-BF87-1B8C6CD777D4}.Release|x64.ActiveCfg = Release|x64
+		{4C83DFB2-8A81-4D8B-BF87-1B8C6CD777D4}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {40B809B8-5786-4523-B63F-516277EE0C39}
+	EndGlobalSection
+EndGlobal
