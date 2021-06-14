@@ -77,7 +77,7 @@ Hi! This is a custom Client to manage GermanRap Releases.
 
 ### Help, How to get started, Support & Contact
 
-* Its literally a desktop application, just run it. Head to [#installation] to grab the latest Installer.
+* Its literally a desktop application, just run it. Head to [#installation](#installation) to grab the latest Installer.
 
 
 ### Main Features
