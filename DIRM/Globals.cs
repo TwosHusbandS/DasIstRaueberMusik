@@ -36,6 +36,8 @@ namespace DIRM
 			// Rolling Log stuff
 			Helper.Logger.RollingLog();
 
+			CheckForUpdate();
+
 			CheckIfCSVPathExistsOrCanBeCreated();
 		}
 
@@ -226,7 +228,7 @@ namespace DIRM
 		{
 			get
 			{
-				return "Build RC - 2";
+				return "Version 0.1.0.1 - Build 1";
 			}
 		}
 

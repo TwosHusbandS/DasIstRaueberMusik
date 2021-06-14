@@ -170,7 +170,7 @@ Discord - [@ths#0305][discord-url]
 [license-url]: https://github.com/TwosHusbandS/DasIstRaueberMusik/blob/master/LICENSE.MD
 [maintained-shield]: https://img.shields.io/badge/Maintained-Meh-FFDB3A?style=plastic
 [maintained-url]: #about-the-project
-[version-shield]: https://img.shields.io/badge/Version-0.1.0.0_Installer-4DC71F?style=plastic
+[version-shield]: https://img.shields.io/badge/Version-0.1.0.1_Installer-4DC71F?style=plastic
 
 
 
