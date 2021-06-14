@@ -82,12 +82,18 @@ Hi! This is a custom Client which was originally created to give all Speedrunner
 
 ### Main Features
 
-* PLACEHOLDER
+* Create, Edit, Delete and Manage Releases for each Release-Friday.
+  * A Release is an Artist, a Title, and a ReleaseKind (Album or Single)
+* Automatically (or manually) save all Releases from all Dates as CSV Files locally.
+* Export and Import all CSV Files with all Releases
+* Export one Release-Friday to a format suitable for posting it to reddit.
+* Scrape all Releases from DeinUpdate.net and their RSS Feed.
+* Minimalistic Desktop Client built around it.
 
 
 ### Built With
 
-Pretty much built with straight C# visualized with WPF
+Pretty much built with straight C# visualized with WPF, Installer created via [InnoSetup](https://jrsoftware.org/isinfo.php)
 
 
 ### Installation
@@ -157,7 +163,7 @@ Discord - [@ths#0305][discord-url]
 [discord-shield]: https://img.shields.io/badge/Discord-@thS%230305-7289DA?style=plastic&logo=Discord
 [changelogs-url]: https://github.com/TwosHusbandS/DasIstRaueberMusik/tree/master/DIRM/Installer/Info/Changelogs
 [installer-folder-url]: https://github.com/TwosHusbandS/DasIstRaueberMusik/tree/master/DIRM/Installer
-[installer-latest-url]: https://github.com/TwosHusbandS/DasIstRaueberMusik/tree/master/DIRM/Installer/Project_127_Installer_Latest.exe
+[installer-latest-url]: https://github.com/TwosHusbandS/DasIstRaueberMusik/tree/master/DIRM/Installer/DIRM_Installer_Latest.exe
 [license-shield]: https://img.shields.io/badge/License-MIT-4DC71F?style=plastic
 [license-url]: https://github.com/TwosHusbandS/DasIstRaueberMusik/blob/master/LICENSE.MD
 [maintained-shield]: https://img.shields.io/badge/Maintained-Meh-FFDB3A?style=plastic
