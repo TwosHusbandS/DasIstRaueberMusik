@@ -19,7 +19,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="60"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="1.5*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -46,8 +46,8 @@
                                 <RowDefinition Height="80"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="3*"/>
                                 <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="3*"/>
                             </Grid.ColumnDefinitions>
 
                             <Label x:Name="lbl_Settings_SavePath" Content="Save Path: " Grid.Row="0" Grid.Column="0" Style="{StaticResource lbl}"/>

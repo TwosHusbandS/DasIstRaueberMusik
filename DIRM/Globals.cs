@@ -62,7 +62,7 @@ namespace DIRM
 		{
 			get
 			{
-				string masterURL = "https://raw.githubusercontent.com/TwosHusbandS/Project-127/master/Installer/Update.xml";
+				string masterURL = "https://raw.githubusercontent.com/TwosHusbandS/DasIstRaueberMusik/master/DIRM/Installer/update.xml";
 				return Helper.FileHandling.GetStringFromURL(masterURL);
 			}
 		}
@@ -226,7 +226,7 @@ namespace DIRM
 		{
 			get
 			{
-				return "Build RC - 1";
+				return "Build RC - 2";
 			}
 		}
 

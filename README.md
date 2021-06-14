@@ -84,6 +84,8 @@ Hi! This is a custom Client which was originally created to give all Speedrunner
 
 * Create, Edit, Delete and Manage Releases for each Release-Friday.
   * A Release is an Artist, a Title, and a ReleaseKind (Album or Single)
+  * You can add Information to a Release (for example: "Dienstag Nacht als Amazon exclusive")
+  * You can add a Link to a Release (Youtube or Spotify or whatever) and it will be linked on reddit.
 * Automatically (or manually) save all Releases from all Dates as CSV Files locally.
 * Export and Import all CSV Files with all Releases
 * Export one Release-Friday to a format suitable for posting it to reddit.
