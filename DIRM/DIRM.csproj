@@ -357,7 +357,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Installer\setup.iss" />
-    <Content Include="Installer\SetupOld.iss" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.6.5.1\build\Fody.targets" Condition="Exists('..\packages\Fody.6.5.1\build\Fody.targets')" />
