@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Das Ist Räuber Musik"
-#define MyAppVersion "0.1.0.0"
+#define MyAppVersion "0.1.0.1"
 #define MyAppPublisher "DIRM by TwosHusbandS"
 #define MyAppURL "github"
 #define MyAppExeName "DIRM.exe"
@@ -27,7 +27,7 @@ InfoBeforeFile=..\..\README.md
 PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=dialog
 OutputDir=.
-OutputBaseFilename=DIRM_Installer_0_1_0_0
+OutputBaseFilename=DIRM_Installer_0_1_0_1
 SetupIconFile=..\Artwork\icon.ico
 Compression=lzma
 SolidCompression=yes

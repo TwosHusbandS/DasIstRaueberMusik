@@ -64,9 +64,9 @@ namespace DIRM
 			// Initializes WPF Shit
 			InitializeComponent();
 
-			Globals.Init();
-
 			MW = this;
+
+			Globals.Init();
 
 			this.viewModel = new ViewModel
 			{
