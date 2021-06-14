@@ -27,8 +27,8 @@ Shamelessly stolen from: https://github.com/othneildrew/Best-README-Template
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/TwosHusbandS/Project-127">
-    <img src="Artwork/icon.png" alt="Logo" width="80" height="80">
+  <a href="https://github.com/TwosHusbandS/DasIstRaueberMusik">
+    <img src="DIRM/Artwork/icon.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">DasIstRaueberMusik aka. DIRM</h3>
@@ -40,7 +40,7 @@ Shamelessly stolen from: https://github.com/othneildrew/Best-README-Template
 	.
     <a href="#contact">Contact me</a>
 	.
-	  <a href="Installer/Info/Changelogs/V_0_1_0_0_Changelog.md">Changelog</a>
+	  <a href="DIRM/Installer/Info/Changelogs/V_0_1_0_0_Changelog.md">Changelog</a>
   </p>
 </p>
 
@@ -82,7 +82,7 @@ Hi! This is a custom Client which was originally created to give all Speedrunner
 
 ### Main Features
 
-* [List of Main Features here][features-url]
+* PLACEHOLDER
 
 
 ### Built With
@@ -143,7 +143,7 @@ As long as you dont copy this 1:1 and charge money for it, we gucci.
 
 Twitter - [@thsBizz][twitter-url]
 
-Project Link - [github.com/TwosHusbandS/Project-127][p127-url]
+Project Link - [github.com/TwosHusbandS/DasIstRaueberMusik][dirm-url]
 
 Discord - [@ths#0305][discord-url]
 
@@ -152,17 +152,17 @@ Discord - [@ths#0305][discord-url]
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [discord-url]: https://discordapp.com/users/612259615291342861
 [twitter-url]: https://twitter.com/thSbizz
-[p127-url]: https://github.com/TwosHusbandS/Project-127/
+[dirm-url]: https://github.com/TwosHusbandS/DasIstRaueberMusik
 [twitter-shield]: https://img.shields.io/badge/Twitter-@thSbizz-1DA1F2?style=plastic&logo=Twitter
 [discord-shield]: https://img.shields.io/badge/Discord-@thS%230305-7289DA?style=plastic&logo=Discord
-[changelogs-url]: https://github.com/TwosHusbandS/Project-127/tree/master/Installer/Info/Changelogs
-[installer-folder-url]: https://github.com/TwosHusbandS/Project-127/tree/master/Installer
-[installer-latest-url]: https://github.com/TwosHusbandS/Project-127/raw/master/Installer/Project_127_Installer_Latest.exe
+[changelogs-url]: https://github.com/TwosHusbandS/DasIstRaueberMusik/tree/master/DIRM/Installer/Info/Changelogs
+[installer-folder-url]: https://github.com/TwosHusbandS/DasIstRaueberMusik/tree/master/DIRM/Installer
+[installer-latest-url]: https://github.com/TwosHusbandS/DasIstRaueberMusik/tree/master/DIRM/Installer/Project_127_Installer_Latest.exe
 [license-shield]: https://img.shields.io/badge/License-MIT-4DC71F?style=plastic
-[license-url]: https://github.com/TwosHusbandS/Project-127/blob/master/LICENSE
+[license-url]: https://github.com/TwosHusbandS/DasIstRaueberMusik/blob/master/LICENSE.MD
 [maintained-shield]: https://img.shields.io/badge/Maintained-Meh-FFDB3A?style=plastic
 [maintained-url]: #about-the-project
-[version-shield]: https://img.shields.io/badge/Version-1.2.2.3_Installer-4DC71F?style=plastic
+[version-shield]: https://img.shields.io/badge/Version-0.1.0.0_Installer-4DC71F?style=plastic
 
 
 
