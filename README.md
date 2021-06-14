@@ -34,7 +34,7 @@ Shamelessly stolen from: https://github.com/othneildrew/Best-README-Template
   <h3 align="center">DasIstRaueberMusik aka. DIRM</h3>
 
   <p align="center">
-    Custom Client / Launcher for Speedrunning GTA.
+    Custom Client / Launcher for Managing GermanRap Releases
     <br />
     <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&t=PLACEHOLDER">View Demo</a>
 	.
