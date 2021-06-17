@@ -34,7 +34,7 @@ Shamelessly stolen from: https://github.com/othneildrew/Best-README-Template
   <h3 align="center">DasIstRaueberMusik aka. DIRM</h3>
 
   <p align="center">
-    Custom Client / Launcher for Speedrunning GTA.
+    Custom Client / Launcher for Managing GermanRap Releases
     <br />
     <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&t=PLACEHOLDER">View Demo</a>
 	.
@@ -56,7 +56,7 @@ Shamelessly stolen from: https://github.com/othneildrew/Best-README-Template
         <li><a href="#main-features">Main Features</a></li>
         <li><a href="#Help">Help and how to get Started</a></li>
         <li><a href="#built-with">Built With</a></li>
-        <li><a href="#nstallation">Installation</a></li>
+        <li><a href="#installation">Installation</a></li>
         <li><a href="#user-instructions">User Instructions</a></li>
       </ul>
     </li>
@@ -73,11 +73,11 @@ Shamelessly stolen from: https://github.com/othneildrew/Best-README-Template
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-Hi! This is a custom Client which was originally created to give all Speedrunners the capability of launching the Downgraded GTA Version 1.27. 
+Hi! This is a custom Client to manage GermanRap Releases. 
 
 ### Help, How to get started, Support & Contact
 
-* Its literally a desktop application, just run it.
+* Its literally a desktop application, just run it. Head to [#installation](#installation) to grab the latest Installer.
 
 
 ### Main Features
@@ -171,6 +171,7 @@ Discord - [@ths#0305][discord-url]
 [maintained-shield]: https://img.shields.io/badge/Maintained-Meh-FFDB3A?style=plastic
 [maintained-url]: #about-the-project
 [version-shield]: https://img.shields.io/badge/Version-0.1.0.2_Installer-4DC71F?style=plastic
+
 
 
 
