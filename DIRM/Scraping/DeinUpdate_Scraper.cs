@@ -13,6 +13,7 @@ namespace DIRM.Scraping
 	{
 		public async static Task<string> GetWebsiteSource(string pLink)
 		{
+			Helper.Logger.Log("Trying to get the source of website: \"" + pLink + "\"");
 			string webSource = "";
 			HttpClient myHttpClient = new HttpClient();
 			try
@@ -22,8 +23,9 @@ namespace DIRM.Scraping
 				myHttpClient.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 (iPhone; CPU iPhone OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1 Mobile/15E148 Safari/604.1");
 				webSource = await myHttpClient.GetStringAsync(pLink);
 			}
-			catch
+			catch (Exception ex)
 			{
+				Helper.Logger.Log("Failed to get the soruce of website: \"" + pLink + "\", Exception: " + ex.ToString());
 				throw new NullReferenceException("Failed to get source of Website (" + pLink + ").");
 			}
 			return webSource;
@@ -48,11 +50,11 @@ namespace DIRM.Scraping
 			Match MyMatch = MyRegex.Match(webSource);
 			if (MyMatch.Success && MyMatch.Groups.Count > 0)
 			{
-				string MyMatchUndSo = MyMatch.Groups[0].ToString();
-
 				Helper.Logger.Log("Big Regex DOES match. MyMatchUndSo (post .Replace Actions) coming right up.");
 
-				
+				string MyMatchUndSo = MyMatch.Groups[0].ToString();
+
+
 				// Clean up some of the data we later need
 				MyMatchUndSo = MyMatchUndSo.Replace("&amp;", "&");
 				MyMatchUndSo = MyMatchUndSo.Replace("&#8211;", "");

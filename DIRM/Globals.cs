@@ -228,7 +228,7 @@ namespace DIRM
 		{
 			get
 			{
-				return "Version 0.1.0.1 - Build 1";
+				return "Version 0.1.0.2 - Build 1";
 			}
 		}
 

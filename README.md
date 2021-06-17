@@ -40,7 +40,7 @@ Shamelessly stolen from: https://github.com/othneildrew/Best-README-Template
 	.
     <a href="#contact">Contact me</a>
 	.
-	  <a href="DIRM/Installer/Info/Changelogs/V_0_1_0_0_Changelog.md">Changelog</a>
+	  <a href="DIRM/Installer/Info/Changelogs/V_0_1_0_2_Changelog.md">Changelog</a>
   </p>
 </p>
 
@@ -170,7 +170,7 @@ Discord - [@ths#0305][discord-url]
 [license-url]: https://github.com/TwosHusbandS/DasIstRaueberMusik/blob/master/LICENSE.MD
 [maintained-shield]: https://img.shields.io/badge/Maintained-Meh-FFDB3A?style=plastic
 [maintained-url]: #about-the-project
-[version-shield]: https://img.shields.io/badge/Version-0.1.0.1_Installer-4DC71F?style=plastic
+[version-shield]: https://img.shields.io/badge/Version-0.1.0.2_Installer-4DC71F?style=plastic
 
 
 

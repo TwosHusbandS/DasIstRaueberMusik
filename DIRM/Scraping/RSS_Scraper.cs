@@ -89,8 +89,6 @@ namespace DIRM.Scraping
 
 			List<DateTime> ListOfFridays = new List<DateTime>();
 
-
-
 			foreach (DateTime OneFriday in ListOfFridays)
 			{
 				List<string> ReleaseLinksFromOneFriday = await GetLinksAsync(OneFriday);
@@ -115,6 +113,8 @@ namespace DIRM.Scraping
 		/// 
 		public static async Task<List<string>> GetLinksAsync(DateTime MyDateTime)
 		{
+			Helper.Logger.Log("Inside scraping RSS - Start");
+
 			// Return List
 			List<string> rtrn = new List<string>();
 
@@ -131,6 +131,8 @@ namespace DIRM.Scraping
 				}
 			}
 
+			Helper.Logger.Log("Inside scraping RSS - Before Tasks");
+
 			// Starting Tasks to get Feed Items from Yesterday and Today (in relation to myDateTime Param)
 			Task<List<FeedItem>> myFIYesterdayTask = RSS_Scraper.GetItemsFromDay(MyDateTime.AddDays(-1), true);
 			Task<List<FeedItem>> myFITodayTask = RSS_Scraper.GetItemsFromDay(MyDateTime, true);
@@ -138,6 +140,8 @@ namespace DIRM.Scraping
 			// Awaiting the Task to get the actual List of FeedItems.
 			List<FeedItem> myFIYesterday = await myFIYesterdayTask;
 			List<FeedItem> myFIToday = await myFITodayTask;
+
+			Helper.Logger.Log("Inside scraping RSS - Post Tasks");
 
 			// Combining them to one List
 			List<FeedItem> myFI = myFIYesterday.Concat(myFIToday).ToList<FeedItem>();
@@ -149,11 +153,15 @@ namespace DIRM.Scraping
 				rtrn.Add(FI.Link);
 			}
 
+			Helper.Logger.Log("Inside scraping RSS - End");
+
 			return rtrn;
 		}
 
 		public static async Task<List<FeedItem>> GetItemsFromDay(DateTime myDay, bool OnlyGetReleasePosts = false)
 		{
+			Helper.Logger.Log("Inside scraping RSS - Specific Day - Start");
+
 			// Return Variable
 			List<FeedItem> myFeedItems = new List<FeedItem>();
 
@@ -169,9 +177,13 @@ namespace DIRM.Scraping
 			// Page we are currently looking at
 			int Page = 1;
 
+			Helper.Logger.Log("Inside scraping RSS - Specific Day - Before While");
+
 			// infinite loop
 			while (true)
 			{
+				Helper.Logger.Log("Inside scraping RSS - Specific Day - In While At Top");
+
 				// Build Feed with current Page
 				Feed myFeed = await FeedReader.ReadAsync(myUrl + "&paged=" + Page.ToString());
 
@@ -191,6 +203,8 @@ namespace DIRM.Scraping
 				// Increment Page
 				Page += 1;
 			}
+
+			Helper.Logger.Log("Inside scraping RSS - Specific Day - End");
 
 			// return List of all FeedItems we got
 			return myFeedItems;
