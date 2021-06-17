@@ -163,10 +163,14 @@ namespace DIRM
 
 		private async void Scrape(bool OnlyShowSource = false, bool OwnUrl = false)
 		{
+			Helper.Logger.Log("Lets Scrape");
+
 			DateTime myDT = (DateTime)dp.SelectedDate;
 			btn_GetFromDate.Content += "...";
 
 			List<string> ListOfLinks = new List<string>();
+
+			Helper.Logger.Log(String.Format("Starting to scrape: OnlyShowSource=\"{0}\", OwnUrl=\"{1}\", myDT=\"{2}\"", OnlyShowSource, OwnUrl, myDT.ToString("yyyy_MM_dd")));
 
 			if (OwnUrl)
 			{
@@ -174,18 +178,25 @@ namespace DIRM
 				tmp.ShowDialog();
 				if (tmp.MyReturnString != "")
 				{
+					Helper.Logger.Log("Custom Link: \"" + tmp.MyReturnString + "\"");
 					ListOfLinks.Add(tmp.MyReturnString);
-				}
-				else
-				{
-					btn_GetFromDate.Content = btn_GetFromDate.Content.ToString().TrimEnd('.').TrimEnd('.').TrimEnd('.');
-					return;
 				}
 			}
 			else
 			{
-				ListOfLinks = await Scraping.RSS_Scraper.GetLinksAsync(myDT);
+				Helper.Logger.Log("Trying to scrape RSS");
+				try
+				{
+					ListOfLinks = await Scraping.RSS_Scraper.GetLinksAsync(myDT);
+				}
+				catch (Exception ex)
+				{
+					Helper.Logger.Log("Scraping RSS failed.\n" + ex.ToString());
+				}
+				Helper.Logger.Log("Done scraping RSS");
 			}
+
+
 
 			if (ListOfLinks.Count == 0)
 			{
@@ -234,6 +245,8 @@ namespace DIRM
 
 
 			btn_GetFromDate.Content = btn_GetFromDate.Content.ToString().TrimEnd('.').TrimEnd('.').TrimEnd('.');
+			Helper.Logger.Log("Done scraping");
+
 		}
 
 
@@ -320,7 +333,7 @@ namespace DIRM
 						}
 						else
 						{
-							temp.Add(myRelease.Artist + "|" + myRelease.Title.Replace("[", @"\[").Replace("]", @"\]") + "| [Link](" + myRelease.Link + ") " + myRelease.Info);
+							temp.Add(myRelease.Artist + "|" + myRelease.Title.Replace("[", @"\[").Replace("]", @"\]") + "| [Link](" + myRelease.Link + ") - " + myRelease.Info);
 						}
 					}
 				}
@@ -409,7 +422,7 @@ namespace DIRM
 		{
 			DateTime myDT = (DateTime)dp.SelectedDate;
 			lbl_dg_Header.Content = "Die Releases vom: " + myDT.ToString("dd.MM.yyyy");
-			MainWindow.MW.viewModel.Releases.Clear(); 
+			MainWindow.MW.viewModel.Releases.Clear();
 			MainWindow.MW.viewModel.MyAdd(Helper.CSVHelper.Read(Globals.CurrCSVFile));
 
 		}

@@ -410,5 +410,10 @@ namespace DIRM
 				Helper.FileHandling.DeleteFolder(tempFolderPath);
 			}
 		}
+
+		private void btn_OpenLog_Click(object sender, RoutedEventArgs e)
+		{
+			Process.Start("notepad.exe", Globals.Logfile);
+		}
 	} // End of partial Class
 } // End of Namespace

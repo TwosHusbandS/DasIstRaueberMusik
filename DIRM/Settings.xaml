@@ -44,23 +44,26 @@
                                 <RowDefinition Height="80"/>
                                 <RowDefinition Height="80"/>
                                 <RowDefinition Height="80"/>
+                                <RowDefinition Height="80"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="2*"/>
                                 <ColumnDefinition Width="3*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Label x:Name="lbl_Settings_SavePath" Content="Save Path: " Grid.Row="0" Grid.Column="0" Style="{StaticResource lbl}"/>
-                            <Button x:Name="btn_Settings_SavePath" Content="SavePathValue" Click="btn_Settings_SavePath_Click" MouseRightButtonDown="btn_Settings_SavePath_MouseRightButtonDown" Grid.Row="0" Grid.Column="1" Style="{StaticResource btn}"/>
+                            <Button x:Name="btn_OpenLog" Content="Open Log" Click="btn_OpenLog_Click" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource btn_SE_Path}"/>
 
-                            <Button x:Name="btn_Settings_ExportCSV" Content="Export all Saves" Click="btn_Settings_ExportCSV_Click"  Grid.Row="1" Grid.Column="0" Style="{StaticResource btn}"/>
-                            <Button x:Name="btn_Settings_ImportCSV" Content="Import Saves" Click="btn_Settings_ImportCSV_Click" Grid.Row="1" Grid.Column="1" Style="{StaticResource btn}"/>
+                            <Label x:Name="lbl_Settings_SavePath" Content="Save Path: " Grid.Row="1" Grid.Column="0" Style="{StaticResource lbl}"/>
+                            <Button x:Name="btn_Settings_SavePath" Content="SavePathValue" Click="btn_Settings_SavePath_Click" MouseRightButtonDown="btn_Settings_SavePath_MouseRightButtonDown" Grid.Row="1" Grid.Column="1" Style="{StaticResource btn}"/>
 
-                            <Label x:Name="lbl_Settings_AutoSave" Content="Auto Save" Grid.Row="2" Grid.Column="0" Style="{StaticResource lbl}"/>
-                            <CheckBox x:Name="cb_Settings_AutoSave" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Click="cb_Settings_AutoSave_Click"/>
+                            <Button x:Name="btn_Settings_ExportCSV" Content="Export all Saves" Click="btn_Settings_ExportCSV_Click"  Grid.Row="2" Grid.Column="0" Style="{StaticResource btn}"/>
+                            <Button x:Name="btn_Settings_ImportCSV" Content="Import Saves" Click="btn_Settings_ImportCSV_Click" Grid.Row="2" Grid.Column="1" Style="{StaticResource btn}"/>
+
+                            <Label x:Name="lbl_Settings_AutoSave" Content="Auto Save" Grid.Row="3" Grid.Column="0" Style="{StaticResource lbl}"/>
+                            <CheckBox x:Name="cb_Settings_AutoSave" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Click="cb_Settings_AutoSave_Click"/>
                             
-                            <Label x:Name="lbl_Settings_AlwaysExportAlphabetically" Content="Always export alphabetically" Grid.Row="3" Grid.Column="0" Style="{StaticResource lbl}"/>
-                            <CheckBox x:Name="cb_Settings_AlwaysExportAlphabetically" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Click="cb_Settings_AlwaysExportAlphabetically_Click"/>
+                            <Label x:Name="lbl_Settings_AlwaysExportAlphabetically" Content="Always export alphabetically" Grid.Row="4" Grid.Column="0" Style="{StaticResource lbl}"/>
+                            <CheckBox x:Name="cb_Settings_AlwaysExportAlphabetically" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Click="cb_Settings_AlwaysExportAlphabetically_Click"/>
 
                         </Grid>
                     </StackPanel>
