@@ -62,8 +62,8 @@ namespace DIRM.Scraping
 				MyMatchUndSo = MyMatchUndSo.Replace("&#8222;", "");
 				MyMatchUndSo = MyMatchUndSo.Replace("&#8220;", "");
 				MyMatchUndSo = MyMatchUndSo.Replace(" <em>", "<em>");
-				MyMatchUndSo = MyMatchUndSo.Replace("<em>", ",");
-				MyMatchUndSo = MyMatchUndSo.Replace(" ,", ",");
+				MyMatchUndSo = MyMatchUndSo.Replace("<em>", "=");
+				MyMatchUndSo = MyMatchUndSo.Replace(" =", "=");
 				MyMatchUndSo = MyMatchUndSo.Replace("</em>", "|");
 
 				Helper.Logger.Log(MyMatchUndSo);
@@ -115,8 +115,8 @@ namespace DIRM.Scraping
 				}
 
 				// Putting it together, adding an A or an S, depending on what
-				string AllReleases = Albums.Replace(",", ",A,") + Singles.Replace(",", ",S,");
-				// This is: "Fler,A,NDW|Bushido,S,Sonnenbank flavour|Eko Fresh,S,700 Bars
+				string AllReleases = Albums.Replace("=", "=A=") + Singles.Replace("=", "=S=");
+				// This is: "Fler=A=NDW|Bushido=S=Sonnenbank flavour|Eko Fresh=S=700 Bars
 
 				// split those into ReleaseLines
 				string[] MyReleaseLines = AllReleases.Split('|');
@@ -124,7 +124,7 @@ namespace DIRM.Scraping
 				// Those are string arrays of strings like: "Fler,A,NDW"
 				foreach (string MyReleaseLine in MyReleaseLines)
 				{
-					string[] Content = MyReleaseLine.Split(',');
+					string[] Content = MyReleaseLine.Split('=');
 
 					// Hopefully: Content[0]="Fler" and Content[1]="NDW", lets check that really quick	
 					if (Content.Length > 2)
