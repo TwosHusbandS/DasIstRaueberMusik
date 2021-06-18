@@ -16,8 +16,6 @@ https://www.reddit.com/r/GermanRap/submit?selftext=true
 
 ToDo:
 
-this.viewModel.Releases[i].Link = "asdf"; doesnt work. (spotify thingy). Might need to implement PropertyChanged or implement ObservableCollection
-Scraping failed: 11.06. Azan King Khalil & Kay Ay
 error message for that guy on discord...
 
 Colors, Styles etc...for MainWindow and popups.
@@ -495,13 +493,18 @@ namespace DIRM
 
 			for (int i = 0; i <= this.viewModel.Releases.Count - 1; i++)
 			{
+				List<Task<string>> tmp = new List<Task<string>>();
 				if (!this.viewModel.Releases[i].Link.ToLower().Contains("spotify"))
 				{
-					string SpotifyLink = await Spotify.SpotifyScraper.GetLinkFromSearch(this.viewModel.Releases[i]);
-					Globals.DebugPopup(SpotifyLink);
+					tmp.Add(Spotify.SpotifyScraper.GetLinkFromSearch(this.viewModel.Releases[i]));
+			
+				}
+				foreach (Task<string> tmpTask in tmp)
+				{
+					string SpotifyLink = await tmpTask;
 					if (!String.IsNullOrWhiteSpace(SpotifyLink))
 					{
-						this.viewModel.Releases[i].Link += " " + SpotifyLink;
+						this.viewModel.Change(i, this.viewModel.Releases[i].Link + " " + SpotifyLink);
 					}
 				}
 			}

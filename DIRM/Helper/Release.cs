@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,7 @@ namespace DIRM.Helper
 		Single
 	}
 
-	public class Release
+	public class Release 
 	{
 		public string _artist { get; set; } = "";
 		public string _title { get; set; } = "";

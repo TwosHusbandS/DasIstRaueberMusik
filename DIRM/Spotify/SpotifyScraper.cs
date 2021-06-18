@@ -51,6 +51,7 @@ namespace DIRM.Spotify
 			}
 
 			string SearchString = myRelease.Artist + " " + myRelease.Title;
+			Helper.Logger.Log("Searching for: \"" + mySearchType.ToString() + "\", SearchString: \""  + SearchString + "\"");
 
 			SearchRequest MySearchRequest = new SearchRequest(mySearchType, SearchString);
 			ISearchClient MySearchClient = MySpotifyClient.Search;
@@ -63,6 +64,7 @@ namespace DIRM.Spotify
 				{
 					if ((ListOfReturns[0].Name.ToLower().Contains(myRelease.Title.ToLower())) || (myRelease.Title.ToLower().Contains(ListOfReturns[0].Name.ToLower())))
 					{
+						Helper.Logger.Log("Found a Search Result for that. Link: \"" + ListOfReturns[0].ExternalUrls["spotify"] + "\", Title = \"" + ListOfReturns[0].Name.ToString() + "\"");
 						return ListOfReturns[0].ExternalUrls["spotify"];
 					}
 				}
@@ -74,6 +76,7 @@ namespace DIRM.Spotify
 				{
 					if ((ListOfReturns[0].Name.ToLower().Contains(myRelease.Title.ToLower())) || (myRelease.Title.ToLower().Contains(ListOfReturns[0].Name.ToLower())))
 					{
+						Helper.Logger.Log("Found a Search Result for that. Link: \"" + ListOfReturns[0].ExternalUrls["spotify"] + "\", Title = \"" + ListOfReturns[0].Name.ToString() + "\"");
 						return ListOfReturns[0].ExternalUrls["spotify"];
 					}
 				}

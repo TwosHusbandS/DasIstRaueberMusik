@@ -1,15 +1,17 @@
 ﻿using Prism.Commands;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DIRM
 {
-	public class ViewModel
+	public class ViewModel 
 	{
-		public IList<Helper.Release> Releases { get; set; }
+		public ObservableCollection<Helper.Release> Releases { get; set; }
 
 		public Helper.Release SelectedRelease { get; set; }
 
@@ -17,6 +19,20 @@ namespace DIRM
 
 		public DelegateCommand<Helper.Release> DeleteRow =>
 			_deleteRow ?? (_deleteRow = new DelegateCommand<Helper.Release>(DeleteCommandName));
+
+		public void Change(int index, string link)
+		{
+			Helper.Release tmp = this.Releases[index];
+
+			this.Releases.RemoveAt(index);
+
+			tmp.Link = link;
+
+			this.Releases.Insert(index, tmp);
+
+			Helper.CSVHelper.Save(true);
+
+		}
 
 		void DeleteCommandName(Helper.Release parameter)
 		{
