@@ -717,11 +717,6 @@ string lpSymlinkFileName, string lpTargetFileName, SymbolicLink dwFlags);
 			}
 			catch (Exception e)
 			{
-				if (Globals.OfflineErrorThrown == false && surpressPopup == false)
-				{
-					new Popups.Popup(Popups.Popup.PopupWindowTypes.PopupOkError, "Project 1.27 can not connect to Github and check for Latest Files or Updates.\nThis might cause some things to not work." + e.ToString()).ShowDialog();
-					Globals.OfflineErrorThrown = true;
-				}
 				Helper.Logger.Log("GetStringFromURL failed. Probably Network related. URL = '" + pURL + "'", true, 0);
 				Helper.Logger.Log("e.ToString():\n" + e.ToString(), true, 1);
 				Helper.Logger.Log("e.Message.ToString():\n" + e.Message.ToString(), true, 1);

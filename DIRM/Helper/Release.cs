@@ -14,10 +14,10 @@ namespace DIRM.Helper
 
 	public class Release
 	{
-		public string _artist { get; set; }
-		public string _title { get; set; }
-		public string _link { get; set; }
-		public string _info { get; set; }
+		public string _artist { get; set; } = "";
+		public string _title { get; set; } = "";
+		public string _link { get; set; } = "";
+		public string _info { get; set; } = "";
 
 		public ReleaseKinds ReleaseKind { get; set; }
 

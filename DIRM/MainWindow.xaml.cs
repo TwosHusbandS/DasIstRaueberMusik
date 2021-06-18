@@ -16,7 +16,9 @@ https://www.reddit.com/r/GermanRap/submit?selftext=true
 
 ToDo:
 
-git, github, Installer etc....
+this.viewModel.Releases[i].Link = "asdf"; doesnt work. (spotify thingy). Might need to implement PropertyChanged or implement ObservableCollection
+Scraping failed: 11.06. Azan King Khalil & Kay Ay
+error message for that guy on discord...
 
 Colors, Styles etc...for MainWindow and popups.
 Clean up code, add logging, etc etc...Maybe. If i feel like it. Devs be lazy.
@@ -485,6 +487,27 @@ namespace DIRM
 				MainWindow.MW.btn_Save.Visibility = Visibility.Visible;
 				MainWindow.MW.btn_Export.Margin = new Thickness(140, 10, 10, 10);
 			}
+		}
+
+		private async void btn_GetSpotifyLinks_Click(object sender, RoutedEventArgs e)
+		{
+			btn_GetSpotifyLinks.Content += "...";
+
+			for (int i = 0; i <= this.viewModel.Releases.Count - 1; i++)
+			{
+				if (!this.viewModel.Releases[i].Link.ToLower().Contains("spotify"))
+				{
+					string SpotifyLink = await Spotify.SpotifyScraper.GetLinkFromSearch(this.viewModel.Releases[i]);
+					Globals.DebugPopup(SpotifyLink);
+					if (!String.IsNullOrWhiteSpace(SpotifyLink))
+					{
+						this.viewModel.Releases[i].Link += " " + SpotifyLink;
+					}
+				}
+			}
+
+			btn_GetSpotifyLinks.Content = btn_GetSpotifyLinks.Content.ToString().TrimEnd('.').TrimEnd('.').TrimEnd('.');
+
 		}
 	}
 }
