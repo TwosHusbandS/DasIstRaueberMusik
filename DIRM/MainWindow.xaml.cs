@@ -280,6 +280,47 @@ namespace DIRM
 		}
 
 
+		private string GetInfoTabFromRelease(Helper.Release myRelease)
+		{
+			string rtrn = "";
+			string[] links = myRelease.Link.Split(' ');
+
+			foreach (string link in links)
+			{
+				if (!String.IsNullOrWhiteSpace(link))
+				{
+					string tmplink = link;
+					tmplink = tmplink.Replace(" ", "");
+					tmplink = tmplink.Replace(",", "");
+
+					if (tmplink.ToLower().Contains("spotify"))
+					{
+						rtrn += "[Spotify](" + tmplink + ") - ";
+					}
+					else if (tmplink.ToLower().Contains("youtube") || tmplink.ToLower().Contains("youtu.be"))
+					{
+						rtrn += "[Youtube](" + tmplink + ") - ";
+					}
+					else
+					{
+						rtrn += "[Link](" + tmplink + ") - ";
+					}
+				}
+			}
+
+			if (!String.IsNullOrWhiteSpace(myRelease.Info))
+			{
+				rtrn += myRelease.Info;
+			}
+
+			if (String.IsNullOrEmpty(rtrn))
+			{
+				rtrn += " ";
+			}
+
+			return rtrn;
+		}
+
 
 		private void btn_Export_Click(object sender, RoutedEventArgs e)
 		{
@@ -314,28 +355,7 @@ namespace DIRM
 			{
 				if (myRelease.ReleaseKind == Helper.ReleaseKinds.Single)
 				{
-					if (String.IsNullOrWhiteSpace(myRelease.Link))
-					{
-						if (String.IsNullOrWhiteSpace(myRelease.Info))
-						{
-							temp.Add(myRelease.Artist + "|" + myRelease.Title.Replace("[", @"\[").Replace("]", @"\]") + "| ");
-						}
-						else
-						{
-							temp.Add(myRelease.Artist + "|" + myRelease.Title.Replace("[", @"\[").Replace("]", @"\]") + "| " + myRelease.Info);
-						}
-					}
-					else
-					{
-						if (String.IsNullOrWhiteSpace(myRelease.Info))
-						{
-							temp.Add(myRelease.Artist + "|" + myRelease.Title.Replace("[", @"\[").Replace("]", @"\]") + "| [Link](" + myRelease.Link + ")");
-						}
-						else
-						{
-							temp.Add(myRelease.Artist + "|" + myRelease.Title.Replace("[", @"\[").Replace("]", @"\]") + "| [Link](" + myRelease.Link + ") - " + myRelease.Info);
-						}
-					}
+					temp.Add(myRelease.Artist + "|" + myRelease.Title.Replace("[", @"\[").Replace("]", @"\]") + "|" + GetInfoTabFromRelease(myRelease));
 				}
 			}
 			temp.Add("");
@@ -349,28 +369,7 @@ namespace DIRM
 			{
 				if (myRelease.ReleaseKind == Helper.ReleaseKinds.Album)
 				{
-					if (String.IsNullOrWhiteSpace(myRelease.Link))
-					{
-						if (String.IsNullOrWhiteSpace(myRelease.Info))
-						{
-							temp.Add(myRelease.Artist + "|" + myRelease.Title.Replace("[", @"\[").Replace("]", @"\]") + "| ");
-						}
-						else
-						{
-							temp.Add(myRelease.Artist + "|" + myRelease.Title.Replace("[", @"\[").Replace("]", @"\]") + "| " + myRelease.Info);
-						}
-					}
-					else
-					{
-						if (String.IsNullOrWhiteSpace(myRelease.Info))
-						{
-							temp.Add(myRelease.Artist + "|" + myRelease.Title.Replace("[", @"\[").Replace("]", @"\]") + "| [Link](" + myRelease.Link + ")");
-						}
-						else
-						{
-							temp.Add(myRelease.Artist + "|" + myRelease.Title.Replace("[", @"\[").Replace("]", @"\]") + "| [Link](" + myRelease.Link + ") " + myRelease.Info);
-						}
-					}
+					temp.Add(myRelease.Artist + "|" + myRelease.Title.Replace("[", @"\[").Replace("]", @"\]") + "|" + GetInfoTabFromRelease(myRelease));
 				}
 			}
 			temp.Add("");

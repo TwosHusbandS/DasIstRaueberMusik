@@ -54,7 +54,7 @@
                                         SelectedItemBinding="{Binding ReleaseKind}" 
                                     ItemsSource="{local:EnumBindingSource helper:ReleaseKinds}"/>
                                 <DataGridTextColumn Header="Info" Width="*" Binding="{Binding Info}"/>
-                                <DataGridTextColumn Header="Link" Width="*" Binding="{Binding Link}"/>
+                                <DataGridTextColumn Header="Links" Width="*" Binding="{Binding Link}"/>
                                 <DataGridTemplateColumn Header="Delete">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
