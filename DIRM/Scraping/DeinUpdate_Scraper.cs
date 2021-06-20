@@ -133,13 +133,22 @@ namespace DIRM.Scraping
 						string MyArtist = Content[0].TrimStart(' ').TrimEnd(' ');
 						string MyTitle = Content[2].TrimStart(' ').TrimEnd(' ');
 
+						if (String.IsNullOrWhiteSpace(MyArtist))
+						{
+							MyArtist = "???";
+						}
+						if (String.IsNullOrWhiteSpace(MyTitle))
+						{
+							MyTitle = "???";
+						}
+
 						if (Content[1] == "A")
 						{
-							myReleaseList.Add(new Helper.Release { Artist = MyArtist, Title = MyTitle, ReleaseKind = Helper.ReleaseKinds.Album });
+							myReleaseList.Add(new Helper.Release { Artist = MyArtist, Title = MyTitle, ReleaseKind = Helper.ReleaseKinds.Album, Info = "", Link = "" });
 						}
 						else if (Content[1] == "S")
 						{
-							myReleaseList.Add(new Helper.Release { Artist = MyArtist, Title = MyTitle, ReleaseKind = Helper.ReleaseKinds.Single });
+							myReleaseList.Add(new Helper.Release { Artist = MyArtist, Title = MyTitle, ReleaseKind = Helper.ReleaseKinds.Single, Info = "", Link = "" });
 							//myReleaseList.Add(new Release(MyArtist, MyTitle, ReleaseKinds.Single));
 						}
 					}

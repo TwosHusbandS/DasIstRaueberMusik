@@ -16,6 +16,13 @@ https://www.reddit.com/r/GermanRap/submit?selftext=true
 
 ToDo:
 
+Look at youtube implementation...think about running parallel, and how to achieve. If not, look for other solutions to youtube search.
+Clean up youtube implementation, that weird algorith thingy, namespaces etc etc.
+better UI for the scraping, maybe with popup or sth. Make UI / EX at least semi pretty in general.
+
+[VERY VERY ROUGH IMPLEMENATION IN THIS COMMIT] youtube scrape
+[DONE IN THIS COMMENT] maybe look at more than the first result on spotify scrape
+[DONE IN THIS COMMENT] log spotify scrape to see how agressive the algorith to detect if its the right song is
 error message for that guy on discord...
 
 Colors, Styles etc...for MainWindow and popups.
@@ -308,6 +315,8 @@ namespace DIRM
 				}
 			}
 
+			rtrn = rtrn.TrimEnd(' ').TrimEnd('-');
+
 			if (!String.IsNullOrWhiteSpace(myRelease.Info))
 			{
 				rtrn += myRelease.Info;
@@ -491,25 +500,87 @@ namespace DIRM
 		{
 			btn_GetSpotifyLinks.Content += "...";
 
+			/*
 			for (int i = 0; i <= this.viewModel.Releases.Count - 1; i++)
 			{
-				List<Task<string>> tmp = new List<Task<string>>();
 				if (!this.viewModel.Releases[i].Link.ToLower().Contains("spotify"))
 				{
-					tmp.Add(Spotify.SpotifyScraper.GetLinkFromSearch(this.viewModel.Releases[i]));
-			
-				}
-				foreach (Task<string> tmpTask in tmp)
-				{
-					string SpotifyLink = await tmpTask;
+					string SpotifyLink = await Spotify.SpotifyScraper.GetLinkFromSearch(this.viewModel.Releases[i]);
 					if (!String.IsNullOrWhiteSpace(SpotifyLink))
 					{
 						this.viewModel.Change(i, this.viewModel.Releases[i].Link + " " + SpotifyLink);
 					}
 				}
 			}
+			*/
+
+
+
+			List<Task<string>> tmp = new List<Task<string>>();
+			List<int> ugly = new List<int>();
+			for (int i = 0; i <= this.viewModel.Releases.Count - 1; i++)
+			{
+				if (!this.viewModel.Releases[i].Link.ToLower().Contains("spotify"))
+				{
+					Task<string> tmpTask = Spotify.SpotifyScraper.GetLinkFromSearch(this.viewModel.Releases[i]);
+					tmp.Add(tmpTask);
+					ugly.Add(i);
+				}
+			}
+
+			for (int i = 0; i <= tmp.Count - 1; i++)
+			{
+				string SpotifyLink = await tmp[i];
+				if (!String.IsNullOrWhiteSpace(SpotifyLink))
+				{
+					this.viewModel.Change(ugly[i], this.viewModel.Releases[ugly[i]].Link + " " + SpotifyLink);
+				}
+			}
 
 			btn_GetSpotifyLinks.Content = btn_GetSpotifyLinks.Content.ToString().TrimEnd('.').TrimEnd('.').TrimEnd('.');
+
+		}
+
+		private async void btn_GetYoutubeLinks_Click(object sender, RoutedEventArgs e)
+		{
+			btn_GetYoutubeLinks.Content += "...";
+
+			
+			for (int i = 0; i <= this.viewModel.Releases.Count - 1; i++)
+			{
+				if (!this.viewModel.Releases[i].Link.ToLower().Contains("youtube"))
+				{
+					string YoutubeLink = await Spotify.YoutubeSearch.GetLinkFromSearch(this.viewModel.Releases[i]);
+					if (!String.IsNullOrWhiteSpace(YoutubeLink))
+					{
+						this.viewModel.Change(i, this.viewModel.Releases[i].Link + " " + YoutubeLink);
+					}
+				}
+			}
+			
+
+			//List<Task<string>> tmp = new List<Task<string>>();
+			//List<int> ugly = new List<int>();
+			//for (int i = 0; i <= this.viewModel.Releases.Count - 1; i++)
+			//{
+			//	if (!this.viewModel.Releases[i].Link.ToLower().Contains("youtube"))
+			//	{
+			//		Task<string> tmpTask = Spotify.YoutubeSearch.GetLinkFromSearch(this.viewModel.Releases[i]);
+			//		tmp.Add(tmpTask);
+			//		ugly.Add(i);
+			//	}
+			//}
+			//
+			//for (int i = 0; i <= tmp.Count - 1; i++)
+			//{
+			//	string YoutubeLink = await tmp[i];
+			//	if (!String.IsNullOrWhiteSpace(YoutubeLink))
+			//	{
+			//		this.viewModel.Change(ugly[i], this.viewModel.Releases[ugly[i]].Link + " " + YoutubeLink);
+			//	}
+			//}
+
+			btn_GetYoutubeLinks.Content = btn_GetYoutubeLinks.Content.ToString().TrimEnd('.').TrimEnd('.').TrimEnd('.');
 
 		}
 	}
