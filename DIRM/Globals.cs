@@ -22,6 +22,114 @@ namespace DIRM
 {
 	static class Globals
 	{
+
+		/// <summary>
+		/// Enum for potential Loaded Pages
+		/// </summary>
+		public enum PageStates
+		{
+			Main,
+			AboutSettings
+		}
+
+		/// <summary>
+		/// Internal Value for PageState
+		/// </summary>
+		private static PageStates _PageState = PageStates.Main;
+
+
+		/// <summary>
+		/// Value we use for PageState. Setter is Gucci :*
+		/// </summary>
+		public static PageStates PageState
+		{
+			get
+			{
+				return _PageState;
+			}
+			set
+			{
+				// Setting actual Enum to the correct Value
+				_PageState = value;
+				MainWindow.MW.SetWindowBackgroundBlur();
+
+				// Switch Value
+				switch (value)
+				{
+					// In Case: Settings
+					case PageStates.Main:
+
+						// Set actual Frame_Main Content to the correct Page
+						//MainWindow.MW.Frame_Main.Content = new Settings();
+						//MainWindow.MW.btn_Settings.Style = Application.Current.FindResource("btn_hamburgeritem_selected") as Style;
+						//
+						//// Call Mouse_Over false on other Buttons where a page is behind
+						//MainWindow.MW.btn_Auth.Style = Application.Current.FindResource("btn_hamburgeritem") as Style;
+						//MainWindow.MW.btn_SaveFiles.Style = Application.Current.FindResource("btn_hamburgeritem") as Style;
+						break;
+					case PageStates.AboutSettings:
+
+						// Set actual Frame_Main Content to the correct Page
+						//MainWindow.MW.Frame_Main.Content = new Settings();
+						//MainWindow.MW.btn_Settings.Style = Application.Current.FindResource("btn_hamburgeritem_selected") as Style;
+						//
+						//// Call Mouse_Over false on other Buttons where a page is behind
+						//MainWindow.MW.btn_Auth.Style = Application.Current.FindResource("btn_hamburgeritem") as Style;
+						//MainWindow.MW.btn_SaveFiles.Style = Application.Current.FindResource("btn_hamburgeritem") as Style;
+						break;
+				}
+			}
+		}
+
+
+
+		/// <summary>
+		/// Enum for all HamburgerMenuStates
+		/// </summary>
+		public enum HamburgerMenuStates
+		{
+			Visible,
+			Hidden
+		}
+
+		/// <summary>
+		/// Internal Value for HamburgerMenuState
+		/// </summary>
+		private static HamburgerMenuStates _HamburgerMenuState = HamburgerMenuStates.Visible;
+
+		/// <summary>
+		/// Value we use for HamburgerMenuState. Setter is Gucci :*
+		/// </summary>
+		public static HamburgerMenuStates HamburgerMenuState
+		{
+			get
+			{
+				return _HamburgerMenuState;
+			}
+			set
+			{
+				_HamburgerMenuState = value;
+				MainWindow.MW.SetWindowBackgroundBlur();
+
+				if (value == HamburgerMenuStates.Visible)
+				{
+					// Make invisible
+					MainWindow.MW.GridHamburgerOuter.Visibility = Visibility.Visible;
+					MainWindow.MW.Grid_Main.ColumnDefinitions[0].Width = new GridLength(300);
+					//MainWindow.MW.GridHamburgerOuterSeperator.Visibility = Visibility.Visible;
+				}
+				// If is not visible
+				else
+				{
+					// Make visible
+					MainWindow.MW.GridHamburgerOuter.Visibility = Visibility.Hidden;
+					MainWindow.MW.Grid_Main.ColumnDefinitions[0].Width = new GridLength(0);
+					//MainWindow.MW.GridHamburgerOuterSeperator.Visibility = Visibility.Hidden;
+				}
+			}
+		}
+
+
 		public static void Init()
 		{
 			// Initiates Logging

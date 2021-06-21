@@ -16,13 +16,12 @@ https://www.reddit.com/r/GermanRap/submit?selftext=true
 
 ToDo:
 
-Look at youtube implementation...think about running parallel, and how to achieve. If not, look for other solutions to youtube search.
-Clean up youtube implementation, that weird algorith thingy, namespaces etc etc.
-better UI for the scraping, maybe with popup or sth. Make UI / EX at least semi pretty in general.
+Margins and shit on the hamburger menu buttons to line up, and correct style
+Das ist Räuber musik label as big slogan always same location
+content middle thingy pagestate
+blur thingy
+better UI for the scraping, maybe with popup or sth.
 
-[VERY VERY ROUGH IMPLEMENATION IN THIS COMMIT] youtube scrape
-[DONE IN THIS COMMENT] maybe look at more than the first result on spotify scrape
-[DONE IN THIS COMMENT] log spotify scrape to see how agressive the algorith to detect if its the right song is
 error message for that guy on discord...
 
 Colors, Styles etc...for MainWindow and popups.
@@ -36,6 +35,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -49,6 +49,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
+using System.Windows.Resources;
 using System.Windows.Shapes;
 
 namespace DIRM
@@ -87,7 +88,22 @@ namespace DIRM
 
 			InitDatePicker();
 
-			MainWindow.MW.SaveButtonVisibilityRefresh();
+			SetSaveButtonVisibilityBasedOnSettings();
+			SetButtonMouseOverMagic(btn_Exit);
+			SetButtonMouseOverMagic(btn_Hamburger);
+		}
+
+
+		public void SetSaveButtonVisibilityBasedOnSettings()
+		{
+			if (Settings.AutoSave)
+			{
+				btn_Save.Visibility = Visibility.Hidden;
+			}
+			else
+			{
+				btn_Save.Visibility = Visibility.Visible;
+			}
 		}
 
 		/// <summary>
@@ -482,39 +498,96 @@ namespace DIRM
 			Helper.CSVHelper.Save(true);
 		}
 
-		public void SaveButtonVisibilityRefresh()
+
+
+		private void btn_Hamburger_Click(object sender, RoutedEventArgs e)
 		{
-			if (Settings.AutoSave)
+			if (Globals.HamburgerMenuState == Globals.HamburgerMenuStates.Hidden)
 			{
-				MainWindow.MW.btn_Save.Visibility = Visibility.Hidden;
-				MainWindow.MW.btn_Export.Margin = new Thickness(10, 10, 10, 10);
+				Globals.HamburgerMenuState = Globals.HamburgerMenuStates.Visible;
 			}
 			else
 			{
-				MainWindow.MW.btn_Save.Visibility = Visibility.Visible;
-				MainWindow.MW.btn_Export.Margin = new Thickness(140, 10, 10, 10);
+				Globals.HamburgerMenuState = Globals.HamburgerMenuStates.Hidden;
 			}
 		}
 
-		private async void btn_GetSpotifyLinks_Click(object sender, RoutedEventArgs e)
+		private void SetButtonMouseOverMagic(Button myBtn)
 		{
-			btn_GetSpotifyLinks.Content += "...";
-
-			/*
-			for (int i = 0; i <= this.viewModel.Releases.Count - 1; i++)
+			switch (myBtn.Name)
 			{
-				if (!this.viewModel.Releases[i].Link.ToLower().Contains("spotify"))
-				{
-					string SpotifyLink = await Spotify.SpotifyScraper.GetLinkFromSearch(this.viewModel.Releases[i]);
-					if (!String.IsNullOrWhiteSpace(SpotifyLink))
+				case "btn_Hamburger":
+					if (myBtn.IsMouseOver)
 					{
-						this.viewModel.Change(i, this.viewModel.Releases[i].Link + " " + SpotifyLink);
+						SetControlBackground(myBtn, @"Artwork\hamburger_mo.png");
 					}
+					else
+					{
+						SetControlBackground(myBtn, @"Artwork\hamburger.png");
+					}
+					break;
+				case "btn_Exit":
+					if (myBtn.IsMouseOver)
+					{
+						SetControlBackground(myBtn, @"Artwork\exit_mo.png");
+					}
+					else
+					{
+						SetControlBackground(myBtn, @"Artwork\exit.png");
+					}
+					break;
+			}
+		}
+
+		/// <summary>
+		/// Sets the Backgrund of a specific Button
+		/// </summary>
+		/// <param name="myCtrl"></param>
+		/// <param name="pArtpath"></param>
+		public void SetControlBackground(Control myCtrl, string pArtpath, bool FromFile = false)
+		{
+			try
+			{
+				Uri resourceUri;
+				if (FromFile)
+				{
+					var bitmap = new BitmapImage();
+
+					using (var stream = new FileStream(pArtpath, FileMode.Open))
+					{
+						bitmap.BeginInit();
+						bitmap.CacheOption = BitmapCacheOption.OnLoad;
+						bitmap.StreamSource = stream;
+						bitmap.EndInit();
+						bitmap.Freeze(); // optional
+					}
+					ImageBrush brush2 = new ImageBrush();
+					brush2.ImageSource = bitmap;
+					myCtrl.Background = brush2;
+				}
+				else
+				{
+					resourceUri = new Uri(pArtpath, UriKind.Relative);
+					StreamResourceInfo streamInfo = Application.GetResourceStream(resourceUri);
+					BitmapFrame temp = BitmapFrame.Create(streamInfo.Stream);
+					ImageBrush brush = new ImageBrush();
+					brush.ImageSource = temp;
+					myCtrl.Background = brush;
 				}
 			}
-			*/
+			catch
+			{
+				Helper.Logger.Log("Failed to set Background Image for Button");
+			}
+		}
 
 
+
+
+		private async void btn_GetSpotifyLinks_Click(object sender, RoutedEventArgs e)
+		{
+			btn_GetSpotifyLinks.IsEnabled = false;
+			btn_GetSpotifyLinks.Content += "...";
 
 			List<Task<string>> tmp = new List<Task<string>>();
 			List<int> ugly = new List<int>();
@@ -522,7 +595,7 @@ namespace DIRM
 			{
 				if (!this.viewModel.Releases[i].Link.ToLower().Contains("spotify"))
 				{
-					Task<string> tmpTask = Spotify.SpotifyScraper.GetLinkFromSearch(this.viewModel.Releases[i]);
+					Task<string> tmpTask = Scraping.SpotifyScraper.GetLinkFromSearch(this.viewModel.Releases[i]);
 					tmp.Add(tmpTask);
 					ugly.Add(i);
 				}
@@ -538,49 +611,66 @@ namespace DIRM
 			}
 
 			btn_GetSpotifyLinks.Content = btn_GetSpotifyLinks.Content.ToString().TrimEnd('.').TrimEnd('.').TrimEnd('.');
-
+			btn_GetSpotifyLinks.IsEnabled = true;
 		}
 
 		private async void btn_GetYoutubeLinks_Click(object sender, RoutedEventArgs e)
 		{
+			btn_GetYoutubeLinks.IsEnabled = false;
 			btn_GetYoutubeLinks.Content += "...";
 
-			
+			bool UseSlowScrape = false;
+
+			// Yeah cant make this quicker, getting rate limited
 			for (int i = 0; i <= this.viewModel.Releases.Count - 1; i++)
 			{
-				if (!this.viewModel.Releases[i].Link.ToLower().Contains("youtube"))
+				if (!this.viewModel.Releases[i].Link.ToLower().Contains("youtu") && this.viewModel.Releases[i].ReleaseKind == Helper.ReleaseKinds.Single) // catches youtube.com and youtu.be
 				{
-					string YoutubeLink = await Spotify.YoutubeSearch.GetLinkFromSearch(this.viewModel.Releases[i]);
+					string YoutubeLink = "";
+
+					if (UseSlowScrape)
+					{
+						YoutubeLink = await Scraping.YoutubeSearch.GetLinkFromSearch(this.viewModel.Releases[i]);
+					}
+					else
+					{
+						try
+						{
+							YoutubeLink = await Scraping.YoutubeAPI.GetLinkFromSearch(this.viewModel.Releases[i]);
+						}
+						catch
+						{
+							Helper.Logger.Log("Gonna use the slow youtube scrape instead of the API, because the API is rate limited");
+							UseSlowScrape = true;
+							YoutubeLink = await Scraping.YoutubeSearch.GetLinkFromSearch(this.viewModel.Releases[i]);
+						}
+					}
+
 					if (!String.IsNullOrWhiteSpace(YoutubeLink))
 					{
 						this.viewModel.Change(i, this.viewModel.Releases[i].Link + " " + YoutubeLink);
 					}
 				}
 			}
-			
-
-			//List<Task<string>> tmp = new List<Task<string>>();
-			//List<int> ugly = new List<int>();
-			//for (int i = 0; i <= this.viewModel.Releases.Count - 1; i++)
-			//{
-			//	if (!this.viewModel.Releases[i].Link.ToLower().Contains("youtube"))
-			//	{
-			//		Task<string> tmpTask = Spotify.YoutubeSearch.GetLinkFromSearch(this.viewModel.Releases[i]);
-			//		tmp.Add(tmpTask);
-			//		ugly.Add(i);
-			//	}
-			//}
-			//
-			//for (int i = 0; i <= tmp.Count - 1; i++)
-			//{
-			//	string YoutubeLink = await tmp[i];
-			//	if (!String.IsNullOrWhiteSpace(YoutubeLink))
-			//	{
-			//		this.viewModel.Change(ugly[i], this.viewModel.Releases[ugly[i]].Link + " " + YoutubeLink);
-			//	}
-			//}
 
 			btn_GetYoutubeLinks.Content = btn_GetYoutubeLinks.Content.ToString().TrimEnd('.').TrimEnd('.').TrimEnd('.');
+			btn_GetYoutubeLinks.IsEnabled = true;
+		}
+
+
+		private void btn_MouseLeave(object sender, MouseEventArgs e)
+		{
+			SetButtonMouseOverMagic((Button)sender);
+		}
+
+		private void btn_MouseEnter(object sender, MouseEventArgs e)
+		{
+			SetButtonMouseOverMagic((Button)sender);
+		}
+
+
+		public void SetWindowBackgroundBlur()
+		{
 
 		}
 	}

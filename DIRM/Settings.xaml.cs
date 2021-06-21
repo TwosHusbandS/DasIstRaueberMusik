@@ -266,7 +266,7 @@ namespace DIRM
 			set
 			{
 				SetSetting("AutoSave", value.ToString());
-				MainWindow.MW.SaveButtonVisibilityRefresh();
+				MainWindow.MW.SetSaveButtonVisibilityBasedOnSettings();
 			}
 		}
 

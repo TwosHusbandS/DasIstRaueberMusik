@@ -365,7 +365,7 @@
 
 
         <Style x:Key="btn_SmallIcon" TargetType="{x:Type Button}" BasedOn="{StaticResource btn_Main}">
-            <Setter Property="Margin" Value="15"/>
+            <Setter Property="Margin" Value="20"/>
             <Setter Property="Width" Value="40"/>
             <Setter Property="Height" Value="40"/>
             <Setter Property="BorderBrush" Value="{x:Static local:MyColors.App_ButtonSmallBorderBrush}"/>

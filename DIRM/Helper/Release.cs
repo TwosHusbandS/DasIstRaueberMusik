@@ -66,6 +66,15 @@ namespace DIRM.Helper
 			}
 		}
 
+
+		public string SearchString
+		{
+			get
+			{
+				return this.Artist.Replace(" &", "&").Replace("&","") + " " + this.Title;
+			}
+		}
+
 		//public Release(string pArtist, string pTitle, ReleaseKinds pReleaseKind)
 		//{
 		//	this.Artist = pArtist;

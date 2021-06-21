@@ -4,8 +4,8 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 # My ini file for API Stuff
-DIRM\Spotify\APIConfig.ini
 DIRM/Spotify/MyAPIConfig.ini
+DIRM/Scraping/MyAPIConfig.ini
 
 # User-specific files
 *.rsuser
