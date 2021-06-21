@@ -16,11 +16,11 @@ https://www.reddit.com/r/GermanRap/submit?selftext=true
 
 ToDo:
 
-Margins and shit on the hamburger menu buttons to line up, and correct style
-Das ist Räuber musik label as big slogan always same location
 content middle thingy pagestate
 blur thingy
 better UI for the scraping, maybe with popup or sth.
+Clean up UI code and styles. At least a bit...
+import / export a single release
 
 error message for that guy on discord...
 
@@ -91,7 +91,13 @@ namespace DIRM
 			SetSaveButtonVisibilityBasedOnSettings();
 			SetButtonMouseOverMagic(btn_Exit);
 			SetButtonMouseOverMagic(btn_Hamburger);
+			SetWindowBackgroundImage();
+			dg.RowBackground = MyColors.MyColorOffBlack70;
+			dg.AlternatingRowBackground = MyColors.MyColorOffBlack50;
+			dg.Foreground = MyColors.MyColorWhite;
 		}
+
+
 
 
 		public void SetSaveButtonVisibilityBasedOnSettings()
@@ -537,6 +543,23 @@ namespace DIRM
 					}
 					break;
 			}
+		}
+
+
+		/// <summary>
+		/// Set the Background to our WPF Window
+		/// </summary>
+		public void SetWindowBackgroundImage()
+		{
+			string URL_Path = @"Artwork\bg.png";
+			Uri resourceUri = new Uri(URL_Path, UriKind.Relative);
+			StreamResourceInfo streamInfo = Application.GetResourceStream(resourceUri);
+			BitmapFrame temp = BitmapFrame.Create(streamInfo.Stream);
+			ImageBrush brush = new ImageBrush();
+			brush.ImageSource = temp;
+			MainWindow.MW.Grid_Main.Background = brush;
+
+			SetWindowBackgroundBlur();
 		}
 
 		/// <summary>

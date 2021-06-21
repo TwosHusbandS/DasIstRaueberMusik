@@ -411,6 +411,7 @@
     <Resource Include="Artwork\exit_mo.png" />
     <Resource Include="Artwork\hamburger.png" />
     <Resource Include="Artwork\hamburger_mo.png" />
+    <Resource Include="Artwork\bg.png" />
     <Content Include="Installer\setup.iss" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

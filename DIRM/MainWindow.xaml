@@ -50,7 +50,7 @@
 
 
                 <Grid x:Name="GridHamburgerOuter" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"  Background="{x:Static local:MyColors.MW_HamburgerMenuGridBackground}">
-                    <Grid x:Name="GridHamburgerInner" Margin="15, 120, 15, 30">
+                    <Grid x:Name="GridHamburgerInner" Margin="15, 140, 15, 12">
                         <Grid.RowDefinitions>
                             <RowDefinition/>
                             <RowDefinition/>
@@ -61,11 +61,11 @@
                         </Grid.RowDefinitions>
 
                         <DatePicker Grid.Row="0" Style="{StaticResource dp}" x:Name="dp" SelectedDateChanged="dp_SelectedDateChanged" />
-                        <Button Grid.Row="1" Style="{StaticResource btn}" x:Name="btn_GetFromDate" Content="Get Releases from DeinUpdate"  Click="btn_GetFromDate_Click" MouseRightButtonDown="btn_GetFromDate_MouseRightButtonDown"/>
-                        <Button Grid.Row="2" Style="{StaticResource btn}" x:Name="btn_GetSpotifyLinks" Content="Get Spotify Links from Releases"  Click="btn_GetSpotifyLinks_Click"/>
-                        <Button Grid.Row="3" Style="{StaticResource btn}" x:Name="btn_GetYoutubeLinks" Content="Get YouTube Links from Releases"  Click="btn_GetYoutubeLinks_Click"/>
-                        <Button Grid.Row="4" Style="{StaticResource btn}" x:Name="btn_Export" Content="Open Reddit Post Format in Notepad" Click="btn_Export_Click"/>
-                        <Button Grid.Row="5" Style="{StaticResource btn}" x:Name="btn_About" Content="About / Settings" Click="btn_About_Click"  IsEnabled="True"/>
+                        <Button Grid.Row="1" Style="{StaticResource btn_hamburgeritem}" x:Name="btn_GetFromDate" Content="Get Releases from DeinUpdate"  Click="btn_GetFromDate_Click" MouseRightButtonDown="btn_GetFromDate_MouseRightButtonDown"/>
+                        <Button Grid.Row="2" Style="{StaticResource btn_hamburgeritem}" x:Name="btn_GetSpotifyLinks" Content="Get Spotify Links from Releases"  Click="btn_GetSpotifyLinks_Click"/>
+                        <Button Grid.Row="3" Style="{StaticResource btn_hamburgeritem}" x:Name="btn_GetYoutubeLinks" Content="Get YouTube Links from Releases"  Click="btn_GetYoutubeLinks_Click"/>
+                        <Button Grid.Row="4" Style="{StaticResource btn_hamburgeritem}" x:Name="btn_Export" Content="Open Reddit Post Format in Notepad" Click="btn_Export_Click"/>
+                        <Button Grid.Row="5" Style="{StaticResource btn_hamburgeritem}" x:Name="btn_About" Content="About / Settings" Click="btn_About_Click"  IsEnabled="True"/>
                     </Grid>
 
                     <Rectangle x:Name="GridHamburgerOuterSeperator" Width="2" Height="9999" Fill="{x:Static local:MyColors.MW_HamburgerMenuSeperatorBrush}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
@@ -80,11 +80,20 @@
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="6*"/>
                             </Grid.RowDefinitions>
+                            <Rectangle Grid.Row="0" Fill="{x:Static local:MyColors.MyColorOffBlack70}"/>
                             <Label Grid.Row="0" x:Name="lbl_dg_Header" Foreground="{x:Static local:MyColors.BorderBrush}" FontFamily="Ariel" FontSize="20" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Content="Das ist Räuber Musik" VerticalAlignment="Center"/>
                             <Button Grid.Row="0" Style="{StaticResource btn}" x:Name="btn_Clear" Content="Clear" Click="btn_Clear_Click" HorizontalAlignment="Left" Width="100"/>
                             <Button Grid.Row="0" Style="{StaticResource btn}" x:Name="btn_Save" Content="Save" Click="btn_Save_Click" HorizontalAlignment="Right" Width="100"/>
-                            <ScrollViewer x:Name="sv" Grid.Row="1" PreviewMouseWheel="dg_PreviewMouseWheel">
-                                <DataGrid x:Name="dg" Grid.Row="0" ItemsSource="{Binding Releases}" AutoGenerateColumns="False" InitializingNewItem="dg_InitializingNewItem" CellEditEnding="dg_CellEditEnding" CurrentCellChanged="dg_CurrentCellChanged" AddingNewItem="dg_AddingNewItem" RowEditEnding="dg_RowEditEnding" Sorting="dg_Sorting">
+                            <ScrollViewer x:Name="sv" Grid.Row="1" PreviewMouseWheel="dg_PreviewMouseWheel" Background="{x:Static local:MyColors.MyColorOffBlack70}">
+                                <DataGrid x:Name="dg" Grid.Row="0" ItemsSource="{Binding Releases}" AutoGenerateColumns="False" InitializingNewItem="dg_InitializingNewItem" CellEditEnding="dg_CellEditEnding" CurrentCellChanged="dg_CurrentCellChanged" AddingNewItem="dg_AddingNewItem" RowEditEnding="dg_RowEditEnding" Sorting="dg_Sorting" Background="Transparent" RowBackground="Transparent">
+                                    <DataGrid.Resources>
+                                        <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                                            <Setter Property="Background" Value="{x:Static local:MyColors.MyColorOffWhite}" />
+                                            <Setter Property="Foreground" Value="{x:Static local:MyColors.MyColorOffBlack}" />
+                                            <Setter Property="BorderBrush" Value="Black"/>
+                                            <Setter Property="BorderThickness" Value="0,0,1,0"/>
+                                        </Style>
+                                    </DataGrid.Resources>
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Header="Artist" Width="2*" Binding="{Binding Artist}"/>
                                         <DataGridTextColumn Header="Title" Width="2*" Binding="{Binding Title}"/>
@@ -97,7 +106,7 @@
                                             <DataGridTemplateColumn.CellTemplate>
                                                 <DataTemplate>
                                                     <Button Content="X" CommandParameter="{Binding}" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=DataContext.DeleteRow}"
-                                                     LostFocus="Button_LostFocus" GotFocus="Button_GotFocus"/>
+                                                     LostFocus="Button_LostFocus" GotFocus="Button_GotFocus" Background="{x:Static local:MyColors.MyColorOffWhite}"/>
                                                 </DataTemplate>
                                             </DataGridTemplateColumn.CellTemplate>
                                         </DataGridTemplateColumn>
@@ -108,7 +117,8 @@
                     </Border>
                 </Grid>
 
-                <Label Grid.Row="0" Grid.Column="1" Style="{StaticResource lbl}" Foreground="{x:Static local:MyColors.BorderBrush}" Content="Das ist Räuber Musik" Margin="40,10,10,10" HorizontalAlignment="Left"/>
+                <Label Grid.Row="0" Grid.Column="1" Style="{StaticResource lbl_Header}" Foreground="{x:Static local:MyColors.MyColorOffBlack}" Content="Das ist" Margin="10,10,650,10" HorizontalAlignment="Right"/>
+                <Label Grid.Row="0" Grid.Column="1" Style="{StaticResource lbl_Header}" Foreground="{x:Static local:MyColors.MyColorOffBlack}" Content="Räuber Musik" Margin="10,10,300,10" HorizontalAlignment="Right"/>
 
             </Grid>
 

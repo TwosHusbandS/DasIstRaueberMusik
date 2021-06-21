@@ -137,6 +137,18 @@
             <Setter Property="Margin" Value="0" />
         </Style>
 
+        <Style x:Key="lbl_Header" TargetType="Label">
+            <Setter Property="Foreground" Value="{x:Static local:MyColors.App_LabelForeground}" />
+            <Setter Property="FontFamily" Value="Cooper Black" />
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Margin" Value="0" />
+        </Style>
+
         <Style x:Key="rtb" TargetType="RichTextBox">
             <Setter Property="Foreground" Value="{x:Static local:MyColors.App_LabelForeground}" />
             <Setter Property="FontFamily" Value="Tahoma" />
@@ -375,9 +387,10 @@
         <Style x:Key="btn_hamburgeritem" TargetType="{x:Type Button}" BasedOn="{StaticResource btn_Main}">
             <Setter Property="Background" Value="{x:Static local:MyColors.MW_ButtonHamburgerMenuBackground}"/>
             <Setter Property="Foreground" Value="{x:Static local:MyColors.MW_ButtonHamburgerMenuForeground}"/>
+            <Setter Property="FontSize" Value="14"/>
             <Setter Property="BorderBrush" Value="{x:Static local:MyColors.MW_ButtonHamburgerMenuBorderBrush}"/>
             <Setter Property="BorderThickness" Value="{x:Static local:MyColors.MW_ButtonHamburgerMenuBorderThickness}"/>
-            <Setter Property="Margin" Value="0,6"/>
+            <Setter Property="Margin" Value="8"/>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background" Value="{x:Static local:MyColors.MW_ButtonHamburgerMenuMOBackground}"/>
@@ -620,8 +633,8 @@
         <!--ScrollBars-->
         <Style x:Key="{x:Type ScrollBar}" TargetType="{x:Type ScrollBar}">
             <Setter Property="Stylus.IsFlicksEnabled" Value="false" />
-            <Setter Property="Foreground" Value="{x:Static local:MyColors.App_ScrollViewerForeground}" />
-            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="{x:Static local:MyColors.MyColorOffWhite}" />
+            <Setter Property="Background" Value="{x:Static local:MyColors.MyColorTransparent}" />
             <Setter Property="Width" Value="12" />
             <Setter Property="Template">
                 <Setter.Value>
