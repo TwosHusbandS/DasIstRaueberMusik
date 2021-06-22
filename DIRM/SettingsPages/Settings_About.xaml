@@ -1,0 +1,17 @@
+﻿<Page x:Class="DIRM.SettingsPages.Settings_About"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DIRM.SettingsPages"
+      mc:Ignorable="d" 
+      Initialized="Window_SourceInitialized"
+      d:DesignHeight="450" d:DesignWidth="880"
+      Title="Settings_About">
+
+    <Grid>
+        <ScrollViewer>
+            <RichTextBox x:Name="rtb_About" IsReadOnly="True" IsDocumentEnabled="True"  Style="{StaticResource rtb}"/>
+        </ScrollViewer>
+    </Grid>
+</Page>

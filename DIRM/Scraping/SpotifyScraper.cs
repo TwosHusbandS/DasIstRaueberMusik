@@ -33,6 +33,8 @@ namespace DIRM.Scraping
 			MySpotifyClient = new SpotifyClient(MySpotifyClientConfig);
 		}
 
+
+
 		public static async Task<string> GetLinkFromSearch(Helper.Release myRelease)
 		{
 			if (!ManualStaticConstructorRunAlready)
@@ -51,30 +53,33 @@ namespace DIRM.Scraping
 			ISearchClient MySearchClient = MySpotifyClient.Search;
 			SearchResponse MySearchResponse = await MySearchClient.Item(MySearchRequest);
 
-			Dictionary<string, string> SpotifySearchReturns = new Dictionary<string, string>();
+			List<string> mySpotifySearchReturnsTitles = new List<string>();
+			List<string> mySpotifySearchReturnsLinks = new List<string>();
 			if (mySearchType == SearchRequest.Types.Track)
 			{
 				foreach (var tmp in MySearchResponse.Tracks.Items)
 				{
-					SpotifySearchReturns.Add(tmp.Name, tmp.ExternalUrls["spotify"]);
+					mySpotifySearchReturnsTitles.Add(tmp.Name);
+					mySpotifySearchReturnsLinks.Add(tmp.ExternalUrls["spotify"]);
 				}
 			}
 			else
 			{
 				foreach (var tmp in MySearchResponse.Albums.Items)
 				{
-					SpotifySearchReturns.Add(tmp.Name, tmp.ExternalUrls["spotify"]);
+					mySpotifySearchReturnsTitles.Add(tmp.Name);
+					mySpotifySearchReturnsLinks.Add(tmp.ExternalUrls["spotify"]);
 				}
 			}
 
 			string MyClosestLink = "";
 			int bestComparison = 9999;
-			foreach (KeyValuePair<string, string> KVP in SpotifySearchReturns)
+			for (int i = 0; i <= mySpotifySearchReturnsTitles.Count -1; i++)
 			{
-				int currComparison = Helper.FileHandling.getLevenshteinDistance(KVP.Key, myRelease.Title);
+				int currComparison = Helper.FileHandling.getLevenshteinDistance(mySpotifySearchReturnsTitles[i], myRelease.Title);
 				if (currComparison < bestComparison)
 				{
-					MyClosestLink = KVP.Value;
+					MyClosestLink = mySpotifySearchReturnsLinks[i];
 					bestComparison = currComparison;
 				}
 			}
@@ -84,8 +89,8 @@ namespace DIRM.Scraping
 				return MyClosestLink;
 			}
 
-
 			return "";
 		}
+
 	}
 }

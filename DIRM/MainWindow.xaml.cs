@@ -16,12 +16,8 @@ https://www.reddit.com/r/GermanRap/submit?selftext=true
 
 ToDo:
 
-content middle thingy pagestate
-blur thingy
-better UI for the scraping, maybe with popup or sth.
-Clean up UI code and styles. At least a bit...
-import / export a single release
 
+Clean up UI code and styles. At least a bit...
 error message for that guy on discord...
 
 Colors, Styles etc...for MainWindow and popups.
@@ -31,6 +27,7 @@ Clean up code, add logging, etc etc...Maybe. If i feel like it. Devs be lazy.
 
 
 using CodeHollow.FeedReader;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -419,12 +416,32 @@ namespace DIRM
 
 		private void btn_About_Click(object sender, RoutedEventArgs e)
 		{
-			new Settings().ShowDialog();
+			if (Globals.PageState == Globals.PageStates.AboutSettings)
+			{
+				Globals.PageState = Globals.PageStates.Main;
+			}
+			else
+			{
+				Globals.PageState = Globals.PageStates.AboutSettings;
+			}
+			//new Settings().ShowDialog();
 		}
 
 		private void btn_Exit_Click(object sender, RoutedEventArgs e)
 		{
-			this.Close();
+			if (Globals.PageState == Globals.PageStates.AboutSettings)
+			{
+				Globals.PageState = Globals.PageStates.Main;
+			}
+			else
+			{
+				Popups.Popup ppp = new Popups.Popup(Popups.Popup.PopupWindowTypes.PopupYesNo, "Do you want to exit?");
+				ppp.ShowDialog();
+				if (ppp.DialogResult == true)
+				{
+					this.Close();
+				}
+			}
 		}
 
 		private void Button_LostFocus(object sender, RoutedEventArgs e)
@@ -557,9 +574,7 @@ namespace DIRM
 			BitmapFrame temp = BitmapFrame.Create(streamInfo.Stream);
 			ImageBrush brush = new ImageBrush();
 			brush.ImageSource = temp;
-			MainWindow.MW.Grid_Main.Background = brush;
-
-			SetWindowBackgroundBlur();
+			MainWindow.MW.GridBackground.Background = brush;
 		}
 
 		/// <summary>
@@ -691,10 +706,46 @@ namespace DIRM
 			SetButtonMouseOverMagic((Button)sender);
 		}
 
-
-		public void SetWindowBackgroundBlur()
+		private void Frame_Main_Navigating(object sender, NavigatingCancelEventArgs e)
 		{
+			if (e.NavigationMode == NavigationMode.Back || e.NavigationMode == NavigationMode.Forward)
+			{
+				e.Cancel = true;
+			}
+		}
 
+		private void btn_ExportCSV_Click(object sender, RoutedEventArgs e)
+		{
+			FileInfo file = new FileInfo("DIRM_" + ((DateTime)MainWindow.MW.dp.SelectedDate).ToString("yyyy_MM_dd") + ".csv");
+			SaveFileDialog saveFileDialog = new SaveFileDialog();
+			saveFileDialog.Filter = "CSV Files|*.csv*";
+			saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+			saveFileDialog.FileName = file.Name;
+			saveFileDialog.DefaultExt = file.Extension;
+			saveFileDialog.AddExtension = true;
+			saveFileDialog.Title = "Save all Releases for this Date as a CSV";
+
+			if (saveFileDialog.ShowDialog() == true)
+			{
+				if (Helper.FileHandling.doesFileExist(saveFileDialog.FileName))
+				{
+					Helper.FileHandling.deleteFile(saveFileDialog.FileName);
+				}
+				Helper.CSVHelper.Save(saveFileDialog.FileName, this.viewModel.Releases, true);
+			}
+
+		}
+
+		private void btn_ImportCSV_Click(object sender, RoutedEventArgs e)
+		{
+			string FilePathChosenByUserToImport = Helper.FileHandling.OpenDialogExplorer(Helper.FileHandling.PathDialogType.File, "Select the CSV File you want to import to this specific date", @"C:\", false, "CSV Files|*.csv*");
+
+			IList<Helper.Release> NewImported = Helper.CSVHelper.Read(FilePathChosenByUserToImport);
+
+			IList<Helper.Release> AlreadyExisting = Helper.CSVHelper.Read(Globals.CurrCSVFile);
+			NewImported = MainWindow.MW.viewModel.MyAdd(AlreadyExisting, NewImported);
+
+			Helper.CSVHelper.Save(Globals.CurrCSVFile, NewImported, true);
 		}
 	}
 }

@@ -1,0 +1,55 @@
+﻿<Page x:Class="DIRM.SettingsPages.Settings_SettingsGUI"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DIRM.SettingsPages"
+      xmlns:DIRM="clr-namespace:DIRM"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="880"
+      Title="Settings_SettingsGUI">
+
+    <Grid Background="{x:Static DIRM:MyColors.MyColorOffBlack70}">
+        <ScrollViewer x:Name="sv_Settings_General">
+            <StackPanel x:Name="sp_Settings_General">
+                <Grid x:Name="Grid_Settings_General">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Rectangle Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Fill="Transparent"/>
+                    <Rectangle Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Fill="{x:Static DIRM:MyColors.SE_AlternateRowBackground}"/>
+                    <Rectangle Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Fill="Transparent"/>
+                    <Rectangle Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" Fill="{x:Static DIRM:MyColors.SE_AlternateRowBackground}"/>
+                    <Rectangle Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4" Fill="Transparent"/>
+
+                    <Label x:Name="lbl_Settings_SavePath" Content="Save Path: " Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource lbl}"/>
+                    <Button x:Name="btn_Settings_SavePath" Content="SavePathValue" Click="btn_Settings_SavePath_Click" MouseRightButtonDown="btn_Settings_SavePath_MouseRightButtonDown" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource btn}"/>
+
+                    <Button x:Name="btn_Settings_ExportCSV" Content="Export all Releases ever" Click="btn_Settings_ExportCSV_Click"  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource btn}"/>
+                    <Button x:Name="btn_Settings_ImportCSV" Content="Import multiple Release-Days" Click="btn_Settings_ImportCSV_Click" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Style="{StaticResource btn}"/>
+
+                    <Label x:Name="lbl_Settings_AutoSave" Content="Auto Save" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource lbl}"/>
+                    <CheckBox x:Name="cb_Settings_AutoSave" Grid.Row="2" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Click="cb_Settings_AutoSave_Click"/>
+
+                    <Label x:Name="lbl_Settings_AlwaysExportAlphabetically" Content="Always export alphabetically" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Style="{StaticResource lbl}"/>
+                    <CheckBox x:Name="cb_Settings_AlwaysExportAlphabetically" Grid.Row="3" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Click="cb_Settings_AlwaysExportAlphabetically_Click"/>
+
+                    <Button x:Name="btn_OpenLog" Content="Open Log" Click="btn_OpenLog_Click" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4" Style="{StaticResource btn_SE_Path}"/>
+
+
+                </Grid>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

@@ -103,7 +103,7 @@ namespace DIRM
 		// MainWindow
 		public static Thickness MW_BorderThickness { get; private set; } = new System.Windows.Thickness(2);
 		public static Brush MW_BorderBrush { get; private set; } = MyColorWhite;
-		public static Brush MW_HamburgerMenuGridBackground { get; private set; } = SetOpacity(MyColorBlack, 65);
+		public static Brush MW_HamburgerMenuGridBackground { get; private set; } = SetOpacity(MyColorBlack, 60);
 		public static Brush MW_HamburgerMenuSeperatorBrush { get; private set; } = MyColorWhite;
 
 		public static Thickness MW_ButtonHamburgerMenuBorderThickness { get; private set; } = new Thickness(0);
