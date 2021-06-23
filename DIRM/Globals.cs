@@ -22,6 +22,9 @@ namespace DIRM
 {
 	static class Globals
 	{
+
+
+
 		public static void Init()
 		{
 			// Initiates Logging
@@ -68,8 +71,6 @@ namespace DIRM
 				return Helper.FileHandling.GetStringFromURL(masterURL);
 			}
 		}
-
-
 
 
 		/// <summary>
@@ -228,13 +229,14 @@ namespace DIRM
 		{
 			get
 			{
-				return "Version 0.1.0.2 - Build 1";
+				return "Version 0.2.0.0 - Build 1";
 			}
 		}
 
 
 
 		public static bool OfflineErrorThrown = false;
+		public static bool YoutubeSlowWarningThrown = false;
 
 		/// <summary>
 		/// Property of our own Project Version

@@ -4,9 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DIRM"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:helper="clr-namespace:DIRM.Helper"
         mc:Ignorable="d"
-        Title="MainWindow" Height="650" Width="900"
+        Title="Das ist Räuber Musik" Height="650" Width="1200"
         WindowStyle="None" 
         ResizeMode="CanMinimize"
         AllowsTransparency="False" 
@@ -17,59 +18,146 @@
     <Window.Resources>
 
     </Window.Resources>
-    <Border BorderThickness="2" BorderBrush="{x:Static local:MyColors.BorderBrush}">
+    <Border BorderThickness="2" BorderBrush="{x:Static local:MyColors.MyColorWhite}">
+        <Grid>
+            <Grid x:Name="Blur">
+                <Rectangle ClipToBounds="True">
+                    <i:Interaction.Behaviors>
+                        <local:BlurBackgroundBehavior BlurContainer="{Binding ElementName=GridBackground}"  />
+                    </i:Interaction.Behaviors>
+                </Rectangle>
+            </Grid>
 
-        <Grid x:Name="Grid_Main">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="60"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="5*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+            <Grid x:Name="Grid_Main">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-            <Button Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource btn}" x:Name="btn_About" Content="About / Settings" Click="btn_About_Click"  Width="200" HorizontalAlignment="Left" IsEnabled="True"/>
-            <Label Grid.Row="0" Style="{StaticResource lbl}" Foreground="{x:Static local:MyColors.BorderBrush}" Content="Das ist Räuber Musik" Grid.Column="0" Grid.ColumnSpan="2" Margin="140,10,100,10"/>
-            <Button Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource btn}" x:Name="btn_Exit" Click="btn_Exit_Click" Content="X" Width="60" HorizontalAlignment="Right"/>
-            <DatePicker Grid.Row="1" Grid.Column="0" Style="{StaticResource dp}" x:Name="dp" SelectedDateChanged="dp_SelectedDateChanged" />
-            <Button Grid.Row="1" Grid.Column="1" Style="{StaticResource btn}" x:Name="btn_GetFromDate" Content="Get Releases from DeinUpdate"  Click="btn_GetFromDate_Click" MouseRightButtonDown="btn_GetFromDate_MouseRightButtonDown"/>
+                <Grid x:Name="GridBackground" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
 
-            <Border  Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" BorderBrush="{x:Static local:MyColors.BorderBrush}" Margin="10" BorderThickness="2">
-                <Grid x:Name="Grid_DG">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="6*"/>
-                    </Grid.RowDefinitions>
-                    <Label Grid.Row="0" x:Name="lbl_dg_Header" Foreground="{x:Static local:MyColors.BorderBrush}" FontFamily="Ariel" FontSize="20" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Content="Das ist Räuber Musik" VerticalAlignment="Center"/>
-                    <Button Grid.Row="0" Style="{StaticResource btn}" x:Name="btn_Clear" Content="Clear" Click="btn_Clear_Click" HorizontalAlignment="Right" Width="100"/>
-                    <ScrollViewer x:Name="sv" Grid.Row="1" PreviewMouseWheel="dg_PreviewMouseWheel">
-                        <DataGrid x:Name="dg" Grid.Row="0" ItemsSource="{Binding Releases}" AutoGenerateColumns="False" InitializingNewItem="dg_InitializingNewItem" CellEditEnding="dg_CellEditEnding" CurrentCellChanged="dg_CurrentCellChanged" AddingNewItem="dg_AddingNewItem" RowEditEnding="dg_RowEditEnding" Sorting="dg_Sorting">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="Artist" Width="2*" Binding="{Binding Artist}"/>
-                                <DataGridTextColumn Header="Title" Width="2*" Binding="{Binding Title}"/>
-                                <DataGridComboBoxColumn Header="ReleaseArt" Width="100" 
+                <Grid x:Name="Blur_Content" Grid.Column="1" Grid.Row="1" Margin="20">
+                    <Rectangle ClipToBounds="True">
+                        <i:Interaction.Behaviors>
+                            <local:BlurBackgroundBehavior BlurContainer="{Binding ElementName=GridBackground}"  />
+                        </i:Interaction.Behaviors>
+                    </Rectangle>
+                </Grid>
+
+                <Grid x:Name="Blur_Hamburger" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2">
+                    <Rectangle ClipToBounds="True">
+                        <i:Interaction.Behaviors>
+                            <local:BlurBackgroundBehavior BlurContainer="{Binding ElementName=GridBackground}"  />
+                        </i:Interaction.Behaviors>
+                    </Rectangle>
+                </Grid>
+
+                <Grid x:Name="GridHamburgerOuter" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"  Background="{x:Static local:MyColors.MW_HamburgerMenuGridBackground}">
+                    <Grid x:Name="GridHamburgerInner" Margin="15, 140, 15, 12">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <DatePicker Grid.Row="0" Style="{StaticResource dp}" x:Name="dp" SelectedDateChanged="dp_SelectedDateChanged" />
+                        <Button Grid.Row="1" Style="{StaticResource btn_hamburgeritem}" x:Name="btn_GetFromDate" Content="Get Releases from DeinUpdate"  Click="btn_GetFromDate_Click" MouseRightButtonDown="btn_GetFromDate_MouseRightButtonDown"/>
+                        <Button Grid.Row="2" Style="{StaticResource btn_hamburgeritem}" x:Name="btn_GetSpotifyLinks" Content="Get Spotify Links from Releases"  Click="btn_GetSpotifyLinks_Click"/>
+                        <Button Grid.Row="3" Style="{StaticResource btn_hamburgeritem}" x:Name="btn_GetYoutubeLinks" Content="Get YouTube Links from Releases"  Click="btn_GetYoutubeLinks_Click"/>
+                        <Button Grid.Row="4" Style="{StaticResource btn_hamburgeritem}" x:Name="btn_Export" Content="Export to Reddit Format" Click="btn_Export_Click"/>
+                        <Button Grid.Row="5" Style="{StaticResource btn_hamburgeritem}" x:Name="btn_About" Content="Settings / About" Click="btn_About_Click"  IsEnabled="True"/>
+                    </Grid>
+
+                    <Rectangle x:Name="GridHamburgerOuterSeperator" Width="2" Height="9999" Fill="{x:Static local:MyColors.MW_HamburgerMenuSeperatorBrush}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                </Grid>
+
+
+
+                <Border Grid.Row="1" Grid.Column="1" Margin="20" BorderBrush="{x:Static local:MyColors.MyColorWhite}" BorderThickness="2">
+                    <Grid>
+
+         
+                        
+                        <Grid x:Name="Grid_Page" Background="{x:Static local:MyColors.MyColorOffBlack70}">
+                            <Frame x:Name="Frame_Main" Navigating="Frame_Main_Navigating" NavigationUIVisibility="Hidden"/>
+                        </Grid>
+
+                        <Grid x:Name="Grid_DG">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="80"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Rectangle Grid.Row="0" Fill="{x:Static local:MyColors.MyColorOffBlack70}"/>
+                            <Label Grid.Row="0" x:Name="lbl_dg_Header" Foreground="{x:Static local:MyColors.BorderBrush}" FontFamily="Ariel" FontSize="20" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Content="Das ist Räuber Musik" VerticalAlignment="Center"/>
+
+                            <Button Grid.Row="0" Style="{StaticResource btn}" x:Name="btn_ExportCSV" Content="Export" Click="btn_ExportCSV_Click" HorizontalAlignment="Left" Width="100"/>
+                            <Button Grid.Row="0" Style="{StaticResource btn}" x:Name="btn_ImportCSV" Content="Import" Click="btn_ImportCSV_Click" HorizontalAlignment="Left" Margin="120, 10, 10, 10" Width="100"/>
+
+                            <Button Grid.Row="0" Style="{StaticResource btn}" x:Name="btn_Save" Content="Save" Click="btn_Save_Click" HorizontalAlignment="Right" Margin="10, 10, 120, 10" Width="100"/>
+                            <Button Grid.Row="0" Style="{StaticResource btn}" x:Name="btn_Clear" Content="Clear" Click="btn_Clear_Click" HorizontalAlignment="Right" Width="100"/>
+                            <ScrollViewer x:Name="sv" Grid.Row="1" PreviewMouseWheel="dg_PreviewMouseWheel" Background="{x:Static local:MyColors.MyColorOffBlack70}">
+                                <DataGrid x:Name="dg" Grid.Row="0" ItemsSource="{Binding Releases}" AutoGenerateColumns="False" InitializingNewItem="dg_InitializingNewItem" CellEditEnding="dg_CellEditEnding" CurrentCellChanged="dg_CurrentCellChanged" AddingNewItem="dg_AddingNewItem" RowEditEnding="dg_RowEditEnding" Sorting="dg_Sorting" Background="Transparent" RowBackground="Transparent">
+                                    <DataGrid.Resources>
+                                        <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                                            <Setter Property="Background" Value="{x:Static local:MyColors.MyColorOffWhite}" />
+                                            <Setter Property="Foreground" Value="{x:Static local:MyColors.MyColorOffBlack}" />
+                                            <Setter Property="BorderBrush" Value="Black"/>
+                                            <Setter Property="BorderThickness" Value="0,0,1,0"/>
+                                        </Style>
+                                    </DataGrid.Resources>
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Artist" Width="2*" Binding="{Binding Artist}"/>
+                                        <DataGridTextColumn Header="Title" Width="2*" Binding="{Binding Title}"/>
+                                        <DataGridComboBoxColumn Header="ReleaseArt" Width="100" 
                                         SelectedItemBinding="{Binding ReleaseKind}" 
                                     ItemsSource="{local:EnumBindingSource helper:ReleaseKinds}"/>
-                                <DataGridTextColumn Header="Info" Width="*" Binding="{Binding Info}"/>
-                                <DataGridTextColumn Header="Links" Width="*" Binding="{Binding Link}"/>
-                                <DataGridTemplateColumn Header="Delete">
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <Button Content="X" CommandParameter="{Binding}" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=DataContext.DeleteRow}"
-                                                     LostFocus="Button_LostFocus" GotFocus="Button_GotFocus"/>
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
-                            </DataGrid.Columns>
-                        </DataGrid>
-                    </ScrollViewer>
-                </Grid>
-            </Border>
-            <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource btn}" x:Name="btn_Save" Content="Save" Click="btn_Save_Click" HorizontalAlignment="Left" Width="120"/>
-            <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource btn}" x:Name="btn_Export" Content="Open Reddit Post Format in Notepad" Click="btn_Export_Click" Margin="140,10,10,10"/>
+                                        <DataGridTextColumn Header="Info" Width="*" Binding="{Binding Info}"/>
+                                        <DataGridTextColumn Header="Links" Width="*" Binding="{Binding Link}"/>
+                                        <DataGridTemplateColumn Header="Delete">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Button Content="X" CommandParameter="{Binding}" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=DataContext.DeleteRow}"
+                                                     LostFocus="Button_LostFocus" GotFocus="Button_GotFocus" Background="{x:Static local:MyColors.MyColorOffWhite}"/>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </ScrollViewer>
+                        </Grid>
+
+                        <Grid x:Name="Grid_Message" Margin="100" Background="{x:Static local:MyColors.MyColorOffBlack}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="3*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Border Grid.RowSpan="2" BorderThickness="2" BorderBrush="{x:Static local:MyColors.MyColorWhite}">
+                                
+                            </Border>
+                            <ScrollViewer Grid.Row="0" Margin="10">
+                                <RichTextBox x:Name="rtb_Message" IsReadOnly="True" IsDocumentEnabled="True"  Style="{StaticResource rtb}"/>
+                            </ScrollViewer>
+                            <Button x:Name="btn_Okay" Content="Ok" Click="btn_Okay_Click" Grid.Row="1" Style="{StaticResource btn}"/>
+                        </Grid>
+                        
+                    </Grid>
+                </Border>
+
+                <Label Grid.Row="0" Grid.Column="1" Style="{StaticResource lbl_Header}" Foreground="{x:Static local:MyColors.MyColorOffBlack}" Content="Das ist" Margin="10,10,650,10" HorizontalAlignment="Right"/>
+                <Label Grid.Row="0" Grid.Column="1" Style="{StaticResource lbl_Header}" Foreground="{x:Static local:MyColors.MyColorOffBlack}" Content="Räuber Musik" Margin="10,10,300,10" HorizontalAlignment="Right"/>
+
+            </Grid>
+
+            <Button x:Name="btn_Exit" ToolTip="Exit" Style="{StaticResource btn_SmallIcon}" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave" VerticalAlignment="Top" HorizontalAlignment="Right" Click="btn_Exit_Click"/>
+            <Button x:Name="btn_Hamburger" ToolTip="Toggle Hamburger Menu"  Style="{StaticResource btn_SmallIcon}" MouseEnter="btn_MouseEnter" MouseLeave="btn_MouseLeave" VerticalAlignment="Top" HorizontalAlignment="Left" Click="btn_Hamburger_Click"/>
         </Grid>
+
     </Border>
 </Window>
