@@ -7,6 +7,18 @@ using System.Threading.Tasks;
 
 namespace DIRM.Scraping
 {
+//	https://www.deinupdate.de/?feed=rss2&cat=4
+//	https://www.deinupdate.de/?feed=rss2&cat=4&paged=2
+//	https://www.deinupdate.de/?feed=rss2&cat=4&s=Alle%20Rap-Songs%2C%20die%20heute%20erschienen%20sind%21
+//	https://www.feed-reader.net/index.php
+//	https://validator.w3.org/feed/check.cgi?url=https%3A%2F%2Fwww.deinupdate.de%2F%3Ffeed%3Drss2%26cat%3D4
+//	https://www.deinupdate.de/?feed=rss2&orderby=pubdate&order=DESC
+//	https://www.deinupdate.de/?feed=rss2&cat=4&m=20191010&paged=5
+//	https://www.reddit.com/r/GermanRap/submit?selftext=true
+
+
+
+
 	/// <summary>
 	/// Class we are using to get Information off of the RSS Feed by DeinUpdate
 	/// </summary>

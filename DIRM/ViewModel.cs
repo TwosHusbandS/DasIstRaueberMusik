@@ -31,7 +31,6 @@ namespace DIRM
 			this.Releases.Insert(index, tmp);
 
 			Helper.CSVHelper.Save(true);
-
 		}
 
 		void DeleteCommandName(Helper.Release parameter)

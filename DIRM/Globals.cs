@@ -23,94 +23,6 @@ namespace DIRM
 	static class Globals
 	{
 
-		/// <summary>
-		/// Enum for potential Loaded Pages
-		/// </summary>
-		public enum PageStates
-		{
-			Main,
-			AboutSettings
-		}
-
-		/// <summary>
-		/// Internal Value for PageState
-		/// </summary>
-		private static PageStates _PageState = PageStates.Main;
-
-
-		/// <summary>
-		/// Value we use for PageState. Setter is Gucci :*
-		/// </summary>
-		public static PageStates PageState
-		{
-			get
-			{
-				return _PageState;
-			}
-			set
-			{
-				// Setting actual Enum to the correct Value
-				_PageState = value;
-
-				// Switch Value
-				switch (value)
-				{
-					// In Case: Settings
-					case PageStates.Main:
-						MainWindow.MW.Grid_DG.Visibility = Visibility.Visible;
-						MainWindow.MW.Grid_Page.Visibility = Visibility.Hidden;
-						MainWindow.MW.btn_About.Style = Application.Current.FindResource("btn_hamburgeritem") as Style;
-						break;
-					case PageStates.AboutSettings:
-						MainWindow.MW.Grid_Page.Visibility = Visibility.Visible;
-						MainWindow.MW.Grid_DG.Visibility = Visibility.Hidden;
-						MainWindow.MW.Frame_Main.Content = new Settings();
-						MainWindow.MW.btn_About.Style = Application.Current.FindResource("btn_hamburgeritem_selected") as Style;
-						break;
-				}
-			}
-		}
-
-
-
-		/// <summary>
-		/// Enum for all HamburgerMenuStates
-		/// </summary>
-		public enum HamburgerMenuStates
-		{
-			Visible,
-			Hidden
-		}
-
-		/// <summary>
-		/// Internal Value for HamburgerMenuState
-		/// </summary>
-		private static HamburgerMenuStates _HamburgerMenuState = HamburgerMenuStates.Visible;
-
-		/// <summary>
-		/// Value we use for HamburgerMenuState. Setter is Gucci :*
-		/// </summary>
-		public static HamburgerMenuStates HamburgerMenuState
-		{
-			get
-			{
-				return _HamburgerMenuState;
-			}
-			set
-			{
-				_HamburgerMenuState = value;
-
-				if (value == HamburgerMenuStates.Visible)
-				{
-					MainWindow.MW.Grid_Main.ColumnDefinitions[0].Width = new GridLength(300);
-				}
-				// If is not visible
-				else
-				{
-					MainWindow.MW.Grid_Main.ColumnDefinitions[0].Width = new GridLength(0);
-				}
-			}
-		}
 
 
 		public static void Init()
@@ -159,8 +71,6 @@ namespace DIRM
 				return Helper.FileHandling.GetStringFromURL(masterURL);
 			}
 		}
-
-
 
 
 		/// <summary>
@@ -319,13 +229,14 @@ namespace DIRM
 		{
 			get
 			{
-				return "Version 0.1.0.2 - Build 1";
+				return "Version 0.2.0.0 - Build 1";
 			}
 		}
 
 
 
 		public static bool OfflineErrorThrown = false;
+		public static bool YoutubeSlowWarningThrown = false;
 
 		/// <summary>
 		/// Property of our own Project Version

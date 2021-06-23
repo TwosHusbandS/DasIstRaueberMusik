@@ -65,7 +65,7 @@ namespace DIRM
 		public static Thickness App_ButtonBorderThickness { get; private set; } = new Thickness(0);
 
 		public static Brush App_ButtonBorderBrush { get; private set; } = MyColorWhite;
-		public static Brush App_ButtonBackground { get; private set; } = SetOpacity(MyColorBlack, 70);
+		public static Brush App_ButtonBackground { get; private set; } = SetOpacity(MyColorBlack, 60);
 		public static Brush App_ButtonForeground { get; private set; } = MyColorWhite;
 		public static Brush App_ButtonMOBackground { get; private set; } = MyColorOffWhite;
 		public static Brush App_ButtonMOForeground { get; private set; } = MyColorBlack;

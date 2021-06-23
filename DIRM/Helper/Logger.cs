@@ -54,13 +54,13 @@ namespace DIRM.Helper
 			if (pSkipLogSetting && !String.IsNullOrWhiteSpace(pLogMessage))
 			{
 				string LogMessage = "[" + DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss") + "] - ";
-			
+
 				// Yes this for loop is correct. If Log level 0, we dont add another "- "
 				for (int i = 0; i <= pLogLevel - 1; i++)
 				{
 					LogMessage += "- ";
 				}
-			
+
 				LogMessage += pLogMessage;
 				Helper.FileHandling.AddToLog(Globals.Logfile, LogMessage);
 			}
@@ -74,6 +74,42 @@ namespace DIRM.Helper
 		public static void Log(string pLogMessage)
 		{
 			Log(pLogMessage, true, 0);
+		}
+
+		/// <summary>
+		/// Overloaded / Underloaded Logging Method
+		/// </summary>
+		/// <param name="pLogMessage"></param>
+		public static void Log(Exception ex)
+		{
+			Log("!!! Exception found !!!");
+			Log("-----------------------");
+			Log("ex.ToString()");
+			Log(ex.ToString());
+			Log("-----------------------");
+			Log("ex.Message.ToString()");
+			Log(ex.Message.ToString());
+			Log("-----------------------");
+			try
+			{
+				StackTrace st = new StackTrace(ex, true);
+				StackFrame frame = st.GetFrame(0);
+				string fileName = frame.GetFileName();
+				string methodName = frame.GetMethod().Name;
+				int line = frame.GetFileLineNumber();
+				int col = frame.GetFileColumnNumber();
+				Log("Stacktrace Info");
+				Log("FileName: \"" + fileName + "\"");
+				Log("MethodName: \"" + methodName + "\"");
+				Log("Line: \"" + line.ToString() + "\"");
+				Log("Column: \"" + col.ToString() + "\"");
+				Log("-----------------------");
+			}
+			catch
+			{
+				Log("Actually failed getting StackTrace Information. 110 of Logger");
+				Log("-----------------------");
+			}
 		}
 
 		/// <summary>

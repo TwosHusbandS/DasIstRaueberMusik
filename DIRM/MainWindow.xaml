@@ -82,6 +82,9 @@
 
                 <Border Grid.Row="1" Grid.Column="1" Margin="20" BorderBrush="{x:Static local:MyColors.MyColorWhite}" BorderThickness="2">
                     <Grid>
+
+         
+                        
                         <Grid x:Name="Grid_Page" Background="{x:Static local:MyColors.MyColorOffBlack70}">
                             <Frame x:Name="Frame_Main" Navigating="Frame_Main_Navigating" NavigationUIVisibility="Hidden"/>
                         </Grid>
@@ -93,8 +96,6 @@
                             </Grid.RowDefinitions>
                             <Rectangle Grid.Row="0" Fill="{x:Static local:MyColors.MyColorOffBlack70}"/>
                             <Label Grid.Row="0" x:Name="lbl_dg_Header" Foreground="{x:Static local:MyColors.BorderBrush}" FontFamily="Ariel" FontSize="20" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Content="Das ist Räuber Musik" VerticalAlignment="Center"/>
-
-
 
                             <Button Grid.Row="0" Style="{StaticResource btn}" x:Name="btn_ExportCSV" Content="Export" Click="btn_ExportCSV_Click" HorizontalAlignment="Left" Width="100"/>
                             <Button Grid.Row="0" Style="{StaticResource btn}" x:Name="btn_ImportCSV" Content="Import" Click="btn_ImportCSV_Click" HorizontalAlignment="Left" Margin="120, 10, 10, 10" Width="100"/>
@@ -131,6 +132,21 @@
                                 </DataGrid>
                             </ScrollViewer>
                         </Grid>
+
+                        <Grid x:Name="Grid_Message" Margin="100" Background="{x:Static local:MyColors.MyColorOffBlack}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="3*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Border Grid.RowSpan="2" BorderThickness="2" BorderBrush="{x:Static local:MyColors.MyColorWhite}">
+                                
+                            </Border>
+                            <ScrollViewer Grid.Row="0" Margin="10">
+                                <RichTextBox x:Name="rtb_Message" IsReadOnly="True" IsDocumentEnabled="True"  Style="{StaticResource rtb}"/>
+                            </ScrollViewer>
+                            <Button x:Name="btn_Okay" Content="Ok" Click="btn_Okay_Click" Grid.Row="1" Style="{StaticResource btn}"/>
+                        </Grid>
+                        
                     </Grid>
                 </Border>
 

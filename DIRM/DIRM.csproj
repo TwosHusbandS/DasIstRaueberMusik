@@ -50,14 +50,15 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <OutputPath>bin\x64\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
+    <DebugType>embedded</DebugType>
     <PlatformTarget>x64</PlatformTarget>
     <LangVersion>7.3</LangVersion>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>icon.ico</ApplicationIcon>
@@ -291,6 +292,7 @@
     </ApplicationDefinition>
     <Compile Include="Helper\BlurBackgroundBehaviour.cs" />
     <Compile Include="Helper\CSVHelper.cs" />
+    <Compile Include="MainWindow_UIStuff.cs" />
     <Compile Include="Scraping\DeinUpdate_Scraper.cs" />
     <Compile Include="Helper\EnumBindingSourceExtension.cs" />
     <Compile Include="Globals.cs" />
@@ -318,6 +320,7 @@
     </Compile>
     <Compile Include="Helper\Release.cs" />
     <Compile Include="Scraping\RSS_Scraper.cs" />
+    <Compile Include="Scraping\ScrapingLogic.cs" />
     <Compile Include="Scraping\YoutubeAPI.cs" />
     <Compile Include="Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>

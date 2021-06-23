@@ -13,6 +13,10 @@ namespace DIRM.Helper
 		Single
 	}
 
+
+
+
+
 	public class Release 
 	{
 		public string _artist { get; set; } = "";
@@ -74,6 +78,54 @@ namespace DIRM.Helper
 				return this.Artist.Replace(" &", "&").Replace("&","") + " " + this.Title;
 			}
 		}
+
+
+
+
+
+		public string GetInfoTabFromRelease()
+		{
+			string rtrn = "";
+			string[] links = this.Link.Split(' ');
+
+			foreach (string link in links)
+			{
+				if (!String.IsNullOrWhiteSpace(link))
+				{
+					string tmplink = link;
+					tmplink = tmplink.Replace(" ", "");
+					tmplink = tmplink.Replace(",", "");
+
+					if (tmplink.ToLower().Contains("spotify"))
+					{
+						rtrn += "[Spotify](" + tmplink + ") - ";
+					}
+					else if (tmplink.ToLower().Contains("youtu"))
+					{
+						rtrn += "[Youtube](" + tmplink + ") - ";
+					}
+					else
+					{
+						rtrn += "[Link](" + tmplink + ") - ";
+					}
+				}
+			}
+
+			rtrn = rtrn.TrimEnd(' ').TrimEnd('-');
+
+			if (!String.IsNullOrWhiteSpace(this.Info))
+			{
+				rtrn += this.Info;
+			}
+
+			if (String.IsNullOrEmpty(rtrn))
+			{
+				rtrn += " ";
+			}
+
+			return rtrn;
+		}
+
 
 		//public Release(string pArtist, string pTitle, ReleaseKinds pReleaseKind)
 		//{

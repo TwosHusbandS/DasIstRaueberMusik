@@ -713,13 +713,18 @@ string lpSymlinkFileName, string lpTargetFileName, SymbolicLink dwFlags);
 			string rtrn = "";
 			try
 			{
-				rtrn = new System.Net.Http.HttpClient().GetStringAsync(pURL).GetAwaiter().GetResult();
+				Helper.Logger.Log("A");
+				System.Net.Http.HttpClient myHTTPClient = new System.Net.Http.HttpClient();
+				Helper.Logger.Log("B");
+				Task<string> myTaskString = myHTTPClient.GetStringAsync(pURL);
+				Helper.Logger.Log("C");
+				rtrn = myTaskString.GetAwaiter().GetResult();
+				Helper.Logger.Log("D");
 			}
 			catch (Exception e)
 			{
 				Helper.Logger.Log("GetStringFromURL failed. Probably Network related. URL = '" + pURL + "'", true, 0);
-				Helper.Logger.Log("e.ToString():\n" + e.ToString(), true, 1);
-				Helper.Logger.Log("e.Message.ToString():\n" + e.Message.ToString(), true, 1);
+				Helper.Logger.Log(e);
 			}
 
 			return rtrn;

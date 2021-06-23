@@ -31,36 +31,22 @@ namespace DIRM.SettingsPages
 
 		private void Window_SourceInitialized(object sender, EventArgs e)
 		{
-			AddParagraph(rtb_About, "");
+			MainWindow.AddParagraph(rtb_About, "");
 
 			rtb_About.Document.Blocks.Remove(rtb_About.Document.Blocks.FirstBlock);
 
-			AddParagraph(rtb_About, "Version: \"" + Globals.ProjectVersion.ToString() + "\", BuildInfo: \"" + Globals.BuildInfo + "\"");
+			MainWindow.AddParagraph(rtb_About, "Version: \"" + Globals.ProjectVersion.ToString() + "\", BuildInfo: \"" + Globals.BuildInfo + "\"");
 
-			AddParagraph(rtb_About, "Tool to manage Rap Releases, save them, export them for reddit, scrape Releases from DeinUpdate.");
+			MainWindow.AddParagraph(rtb_About, "Tool to manage Rap Releases, save them, export them for reddit, scrape Releases from DeinUpdate.");
 
-			AddParagraph(rtb_About, "You can RightClick the DeinUpdate-Button to take a look at the source. Might help if the scraper fucked up.");
+			MainWindow.AddParagraph(rtb_About, "You can RightClick the DeinUpdate-Button to take a look at the source. Might help if the scraper fucked up.");
 
-			AddParagraph(rtb_About, "You can get Links for the Releases from Spotify and Youtube. The first 100 Youtube Releases will be quick, everything after that will be a little bit slow. This resets daily");
+			MainWindow.AddParagraph(rtb_About, "You can get Links for the Releases from Spotify and Youtube. The first 100 Youtube Releases will be quick, everything after that will be a little bit slow. This resets daily");
 
-			AddParagraph(rtb_About, "You can export / import Releases for the loaded day via the Buttons visible on the Main Screen. You can import / export all Releases for all days via the Settings");
+			MainWindow.AddParagraph(rtb_About, "You can export / import Releases for the loaded day via the Buttons visible on the Main Screen. You can import / export all Releases for all days via the Settings");
 
-			AddParagraph(rtb_About, "");
+			MainWindow.AddParagraph(rtb_About, "");
 		}
 
-
-		/// <summary>
-		/// Adding a Paragraph to a RichTextBox
-		/// </summary>
-		/// <param name="rtb"></param>
-		/// <param name="Paragraph"></param>
-		private void AddParagraph(RichTextBox rtb, string Paragraph)
-		{
-			Paragraph para = new Paragraph();
-			para.Margin = new Thickness(10);
-			para.Inlines.Add(Paragraph);
-			para.TextAlignment = TextAlignment.Center;
-			rtb.Document.Blocks.Add(para);
-		}
 	}
 }
