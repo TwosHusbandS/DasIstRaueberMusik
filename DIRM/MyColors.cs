@@ -65,7 +65,7 @@ namespace DIRM
 		public static Thickness App_ButtonBorderThickness { get; private set; } = new Thickness(0);
 
 		public static Brush App_ButtonBorderBrush { get; private set; } = MyColorWhite;
-		public static Brush App_ButtonBackground { get; private set; } = SetOpacity(MyColorBlack, 70);
+		public static Brush App_ButtonBackground { get; private set; } = SetOpacity(MyColorBlack, 60);
 		public static Brush App_ButtonForeground { get; private set; } = MyColorWhite;
 		public static Brush App_ButtonMOBackground { get; private set; } = MyColorOffWhite;
 		public static Brush App_ButtonMOForeground { get; private set; } = MyColorBlack;
@@ -103,7 +103,7 @@ namespace DIRM
 		// MainWindow
 		public static Thickness MW_BorderThickness { get; private set; } = new System.Windows.Thickness(2);
 		public static Brush MW_BorderBrush { get; private set; } = MyColorWhite;
-		public static Brush MW_HamburgerMenuGridBackground { get; private set; } = SetOpacity(MyColorBlack, 65);
+		public static Brush MW_HamburgerMenuGridBackground { get; private set; } = SetOpacity(MyColorBlack, 60);
 		public static Brush MW_HamburgerMenuSeperatorBrush { get; private set; } = MyColorWhite;
 
 		public static Thickness MW_ButtonHamburgerMenuBorderThickness { get; private set; } = new Thickness(0);
